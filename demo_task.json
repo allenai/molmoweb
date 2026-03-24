@@ -1,0 +1,7 @@
+[
+  {
+    "id": "best_rapid_player",
+    "prompt": "On lichess.org, find who is currently the highest rated rapid player. Report their username and rating.",
+    "task_type": "demo"
+  }
+]

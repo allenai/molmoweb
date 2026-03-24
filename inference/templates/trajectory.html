@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Trajectory</title>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: system-ui, -apple-system, sans-serif; margin: 20px; color: #222; }
+  h1 { margin-bottom: 4px; }
+  .query { font-size: 1.3em; margin-top: 0; color: #444; }
+  .step {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin: 16px 0;
+    padding: 16px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+  .step-img {
+    flex: 0 0 55%;
+    min-width: 0;
+  }
+  .step-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    border: 1px solid #eee;
+  }
+  .step-info {
+    flex: 1 1 0;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .step-info h2 { margin-top: 0; }
+  .step-info pre {
+    font-size: 0.82em;
+    white-space: pre-wrap;
+    word-break: break-word;
+    background: #f5f5f5;
+    padding: 10px;
+    border-radius: 4px;
+    overflow-x: auto;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  .error { color: #c00; }
+  @media (max-width: 900px) {
+    .step { flex-direction: column; }
+    .step-img { flex: none; width: 100%; }
+  }
+</style>
+</head>
+<body>
+<h1>Trajectory ({{ steps | length }} steps)</h1>
+{% if query %}
+<p class="query"><b>Query:</b> {{ query }}</p>
+{% endif %}
+
+{% for step in steps %}
+<div class="step">
+  <div class="step-img">
+    {% if step.img_data_url %}
+    <img src="{{ step.img_data_url }}">
+    {% else %}
+    <p>No image</p>
+    {% endif %}
+  </div>
+  <div class="step-info">
+    <h2>Step {{ loop.index0 }}</h2>
+    <p><b>URL:</b> {{ step.url }}</p>
+    <p><b>Title:</b> {{ step.title }}</p>
+    {% if step.prediction_json %}
+    <pre>{{ step.prediction_json }}</pre>
+    {% else %}
+    <p>No prediction</p>
+    {% endif %}
+    {% if step.error %}
+    <p class="error"><b>Error:</b> {{ step.error }}</p>
+    {% endif %}
+  </div>
+</div>
+{% endfor %}
+
+</body>
+</html>
