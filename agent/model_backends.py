@@ -93,17 +93,22 @@ class ModalActionPredictor:
 # ---------------------------------------------------------------------------
 
 class HFActionPredictor:
-    def __init__(self, checkpoint: str, device: str | None = None, max_new_tokens: int = 1024):
+    def __init__(self, checkpoint: str, device: str | None = None, max_new_tokens: int = 1024, temperature: float = 0.7, top_p: float | None = 0.8):
         import torch
         from transformers import AutoProcessor, AutoModelForImageTextToText
 
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.dtype = torch.bfloat16
         self.max_new_tokens = max_new_tokens
+        self.temperature = temperature
+        self.top_p = top_p
 
         self.processor = AutoProcessor.from_pretrained(checkpoint, trust_remote_code=True, padding_side="left")
         self.model = AutoModelForImageTextToText.from_pretrained(
-            checkpoint, torch_dtype=self.dtype, trust_remote_code=True,
+            checkpoint,
+            trust_remote_code=True,
+            torch_dtype=torch.float32,
+            attn_implementation="sdpa",
         ).to(self.device)
         self.model.eval()
 
@@ -119,10 +124,17 @@ class HFActionPredictor:
         pil_images, _, _ = process_vision_info(messages)
         text_input = self.processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
         inputs = self.processor(images=pil_images, text=text_input, padding=True, return_tensors="pt").to(self.device)
-        inputs = {k: v.to(self.dtype) if torch.is_floating_point(v) else v for k, v in inputs.items()}
-
+        # Remove token_type_ids: HF uses it to enable bidirectional attention for image tokens; molmoweb is trained with causal attention only
+        inputs = {k: v for k, v in inputs.items() if k != "token_type_ids"}
+        prompt = self.processor.decode(inputs["input_ids"][0], skip_special_tokens=True)
+        sample = self.top_p is not None
         with torch.no_grad():
-            outputs = self.model.generate(**inputs, max_new_tokens=self.max_new_tokens)
+            outputs = self.model.generate(
+                **inputs,
+                max_new_tokens=self.max_new_tokens,
+                do_sample=sample,
+                **({"temperature": self.temperature, "top_p": self.top_p} if sample else {}),
+            )
 
         generated_tokens = outputs[:, inputs["input_ids"].size(1):]
         text = self.processor.batch_decode(generated_tokens, skip_special_tokens=True)[0].strip()
@@ -159,9 +171,24 @@ class NativeActionPredictor:
         self.temperature = temperature
         self.top_p = top_p
 
-        cfg_path = resource_path(checkpoint, "config.yaml")
-        model_cfg = BaseModelConfig.load(cfg_path, key="model", validate_paths=False)
+        import re
+        import pathlib
+        # Resolve bare HF repo IDs (e.g. "allenai/MolmoWeb-8B-Native") to a local snapshot directory.
+        if not pathlib.Path(checkpoint).exists() and re.fullmatch(r"[^/]+/[^/]+", checkpoint):
+            from huggingface_hub import snapshot_download
+            log.info(f"Checkpoint '{checkpoint}' looks like a HF repo ID; downloading snapshot...")
+            checkpoint = snapshot_download(repo_id=checkpoint)
+            log.info(f"Snapshot downloaded to {checkpoint}")
 
+        try:
+            cfg_path = resource_path(checkpoint, "config.yaml")
+        except FileNotFoundError:
+            raise FileNotFoundError(
+                f"Could not find config.yaml for checkpoint '{checkpoint}'. "
+                "Pass the correct local directory path or a valid HuggingFace repo ID "
+                "(e.g. 'allenai/MolmoWeb-8B-Native')."
+            )
+        model_cfg = BaseModelConfig.load(cfg_path, key="model", validate_paths=False)
         with torch.device("meta"):
             self.model = model_cfg.build_model()
         self.model.to_empty(device=self.device)
@@ -191,9 +218,11 @@ class NativeActionPredictor:
         batch["input_ids"] = batch.pop("input_tokens")
         batch.pop("metadata")
         batch = {k: torch.as_tensor(np.expand_dims(v, 0), device=self.device) for k, v in batch.items()}
-
-        sampler = TopPSampler(p=self.top_p, temperature=self.temperature, with_replacement=False)
-
+        
+        if self.top_p is not None:
+            sampler = TopPSampler(p=self.top_p, temperature=self.temperature, with_replacement=False)
+        else:
+            sampler = None
         if not hasattr(self, "_logged_sampler"):
             print(f"[SAMPLING] TopPSampler(p={self.top_p}, temperature={self.temperature})")
             self._logged_sampler = True
