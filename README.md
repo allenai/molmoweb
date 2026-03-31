@@ -205,9 +205,21 @@ trajectories = client.run_batch(
 
 ### Inference Backends
 
-Supported backends: `fastapi` (remote HTTP endpoint), `modal` (serverless), `native` (native molmo/olmo-compatible checkpoint), `hf` (HuggingFace Transformers-compatible checkpoint).
+Supported backends: `fastapi` (remote HTTP endpoint), `modal` (serverless), `native` (native molmo/olmo-compatible checkpoint), `hf` (HuggingFace Transformers-compatible checkpoint), `vllm` (vLLM high-throughput inference).
 
-> **vLLM support coming soon.**
+#### vLLM Backend
+
+MolmoWeb models use the `Molmo2ForConditionalGeneration` architecture, which is [supported in vLLM](https://docs.vllm.ai/en/latest/models/supported_models.html) starting from v0.15.0.
+
+```bash
+# Install with vLLM support
+pip install -e ".[vllm]"
+
+# Run server with vLLM backend
+PREDICTOR_TYPE=vllm CKPT=allenai/MolmoWeb-8B python -m agent.fastapi_model_server
+```
+
+> **Note:** There is a known issue ([vllm-project/vllm#38660](https://github.com/vllm-project/vllm/issues/38660)) where MolmoWeb models may crash on Blackwell GPUs (RTX 5090). Testing on Ampere/Hopper GPUs (A100/H100) is appreciated.
 
 ### Extract Accessibility Tree
 

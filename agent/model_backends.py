@@ -130,6 +130,83 @@ class HFActionPredictor:
 
 
 # ---------------------------------------------------------------------------
+# vLLM (local GPU, high-throughput inference)
+# ---------------------------------------------------------------------------
+
+class VLLMActionPredictor:
+    """vLLM-backed predictor for fast multimodal inference.
+
+    Requires ``pip install vllm>=0.15.0``.  MolmoWeb models use the same
+    Molmo2ForConditionalGeneration architecture that vLLM already supports.
+    """
+
+    def __init__(
+        self,
+        checkpoint: str,
+        device: str | None = None,
+        max_new_tokens: int = 1024,
+        temperature: float = 0.7,
+        top_p: float = 0.8,
+    ):
+        from vllm import LLM
+
+        # vLLM manages GPU placement internally; `device` is accepted for
+        # interface compatibility but not used directly.
+        self.max_new_tokens = max_new_tokens
+        self.temperature = temperature
+        self.top_p = top_p
+
+        self.llm = LLM(
+            model=checkpoint,
+            trust_remote_code=True,
+            max_model_len=4096,
+            max_num_batched_tokens=4096,
+            gpu_memory_utilization=0.9,
+        )
+        log.info(f"Loaded vLLM model from {checkpoint}")
+
+    def predict(
+        self,
+        prompt: str,
+        image_np: np.ndarray | list[np.ndarray],
+        past_actions: Optional[list[dict[str, Any]]] = None,
+        **kwargs,
+    ) -> str | None:
+        from vllm import SamplingParams
+
+        # Convert numpy screenshot(s) to PIL
+        if isinstance(image_np, list):
+            images = [
+                Image.fromarray(img.astype("uint8")).convert("RGB")
+                for img in image_np
+            ]
+        else:
+            images = [Image.fromarray(image_np.astype("uint8")).convert("RGB")]
+
+        # Build chat message with image(s) + text
+        content: list[dict[str, Any]] = []
+        for img in images:
+            content.append({"type": "image_url", "image_url": {"url": img}})
+        content.append({"type": "text", "text": prompt})
+
+        messages = [{"role": "user", "content": content}]
+
+        sampling_params = SamplingParams(
+            temperature=self.temperature,
+            top_p=self.top_p,
+            max_tokens=self.max_new_tokens,
+        )
+
+        try:
+            outputs = self.llm.chat(messages, sampling_params=sampling_params)
+            text = outputs[0].outputs[0].text.strip()
+            return text or None
+        except Exception as e:
+            log.error(f"vLLM inference failed: {e}")
+            return None
+
+
+# ---------------------------------------------------------------------------
 # Native OLMo (local GPU, direct model loading)
 # ---------------------------------------------------------------------------
 
