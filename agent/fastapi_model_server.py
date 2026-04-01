@@ -8,7 +8,7 @@ import torch
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from agent.model_backends import HFActionPredictor, NativeActionPredictor
+from agent.model_backends import HFActionPredictor, NativeActionPredictor, VLLMActionPredictor
 from utils.vis_utils.image import base64_to_numpy_image
 
 
@@ -43,6 +43,12 @@ def create_predictor_pool(
             predictor = HFActionPredictor(checkpoint=ckpt, device=device)
         elif predictor_type == "native":
             predictor = NativeActionPredictor(
+                checkpoint=ckpt, device=device,
+                max_new_tokens=max_new_tokens, temperature=temperature,
+                top_p=top_p,
+            )
+        elif predictor_type == "vllm":
+            predictor = VLLMActionPredictor(
                 checkpoint=ckpt, device=device,
                 max_new_tokens=max_new_tokens, temperature=temperature,
                 top_p=top_p,

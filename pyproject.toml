@@ -25,5 +25,8 @@ dependencies = [
     "backoff>=2.0.0",
 ]
 
+[project.optional-dependencies]
+vllm = ["vllm>=0.15.0"]
+
 [tool.isort]
 profile = "black"
