@@ -77,17 +77,16 @@ def execute_action(page, action: ALL_ACTIONS) -> tuple[bool, str]:
 
         if isinstance(action, KeyboardPress):
             page.keyboard.press(action.key)
-            if action.key.lower() == "enter":
-                time.sleep(1)
+            time.sleep(1)
             return True, ""
 
         if isinstance(action, Goto):
-            page.goto(action.url, wait_until="domcontentloaded")
+            page.goto(action.url, wait_until="domcontentloaded", timeout=60000)
             return True, ""
 
         if isinstance(action, BrowserNav):
             if action.nav_type == "go_back":
-                page.go_back()
+                page.go_back(timeout=30000)
             elif action.nav_type == "new_tab":
                 page.context.new_page()
             elif action.nav_type == "tab_focus":
@@ -112,19 +111,20 @@ def execute_action(page, action: ALL_ACTIONS) -> tuple[bool, str]:
 def _click_by_bid(page, action: Click) -> tuple[bool, str]:
     try:
         elem = page.locator(f'[bid="{action.bid}"]').first
+        elem.scroll_into_view_if_needed(timeout=500)
         if action.click_type == "double":
-            elem.dblclick(button=action.button, timeout=2000)
+            elem.dblclick(button=action.button, timeout=500)
         else:
-            elem.click(button=action.button, timeout=2000)
+            elem.click(button=action.button, timeout=500)
         time.sleep(1)
         return True, ""
     except Exception:
         try:
             elem = page.locator(f'[bid="{action.bid}"]').first
             if action.click_type == "double":
-                elem.dblclick(button=action.button, force=True, timeout=2000)
+                elem.dblclick(button=action.button, force=True, timeout=500)
             else:
-                elem.click(button=action.button, force=True, timeout=2000)
+                elem.click(button=action.button, force=True, timeout=500)
             time.sleep(1)
             return True, ""
         except Exception as e2:

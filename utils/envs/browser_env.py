@@ -20,6 +20,7 @@ import logging
 import os
 import time
 from abc import ABC, abstractmethod
+from datetime import UTC, datetime, timezone
 from io import BytesIO
 from typing import Any
 
@@ -33,6 +34,7 @@ from utils.envs.action_executor import execute_action
 from utils.axtree import extract_axtree, extract_screenshot, MarkingError, EXTRACT_OBS_MAX_TRIES
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 def _start_playwright():
@@ -312,14 +314,173 @@ class BrowserbaseEnv(BrowserEnv):
         cdp_url = f"wss://connect.browserbase.com?sessionId={self.bb_session.id}&apiKey={self.api_key}"
         self.browser = self.playwright.chromium.connect_over_cdp(cdp_url)
 
-        if self.browser.contexts:
-            self.context = self.browser.contexts[0]
-            self.page = self.context.pages[0] if self.context.pages else self.context.new_page()
+        # Always use the Browserbase-provisioned default context and page.
+        # Creating a new context bypasses Browserbase's built-in fingerprinting
+        # and stealth configuration. contexts[0]/pages[0] are guaranteed to
+        # exist after connect_over_cdp with a live Browserbase session.
+        self.context = self.browser.contexts[0]
+        self.page = self.context.pages[0]
+
+        # listen for captcha solving events
+        self.captcha_timeout_seconds = 30
+        self.cur_captcha_events = []
+
+        # Attach CAPTCHA listener to the initial page and auto-attach to all
+        # future pages (new tabs, popups) so we never miss a CAPTCHA event.
+        self._attach_captcha_listener(self.page)
+        self.context.on("page", lambda p: self._attach_captcha_listener(p))
+
+    def step(self, action: ALL_ACTIONS) -> dict:
+        self.step_count += 1
+
+        new_page = self._execute_with_tab_detection(action)
+        if new_page:
+            self.page = new_page
+
+        # Wait for CAPTCHA solving to complete BEFORE any CDP/load-state
+        # operations. The CAPTCHA is triggered by the action above, so we must
+        # check after execution. Anti-bot systems like Kasada detect continued
+        # automation (load-state polls, DOM queries) during the challenge.
+        self._wait_for_captcha_if_needed()
+
+        # Now safe to wait for page load
+        for p in self.context.pages:
+            try:
+                p.wait_for_load_state("domcontentloaded", timeout=3000)
+            except Exception:
+                pass
+            for frame in p.frames:
+                try:
+                    frame.wait_for_load_state("domcontentloaded", timeout=3000)
+                except Exception:
+                    pass
+        try:
+            self.page.wait_for_load_state("domcontentloaded", timeout=5000)
+        except Exception:
+            pass
+        time.sleep(0.5)
+
+        return self._get_obs()
+
+    def _attach_captcha_listener(self, page):
+        """Attach a console listener to detect Browserbase CAPTCHA solving events."""
+
+        def handle_console(msg):
+            if msg.text == "browserbase-solving-started":
+                print("🧩 CAPTCHA solving started")
+                self.cur_captcha_events.append(
+                    {
+                        "event": "solving-started",
+                        "timestamp": datetime.now(UTC).isoformat(),
+                    }
+                )
+            elif msg.text == "browserbase-solving-finished":
+                print("🔓 CAPTCHA solving finished")
+                self.cur_captcha_events.append(
+                    {
+                        "event": "solving-finished",
+                        "timestamp": datetime.now(UTC).isoformat(),
+                    }
+                )
+
+        try:
+            page.on("console", handle_console)
+        except Exception as e:
+            print(f"❌ Could not attach CAPTCHA listener to page: {e}")
+
+    def _wait_for_captcha_if_needed(self):
+        """
+        Check for and wait on CAPTCHA solving BEFORE any other page operations.
+
+        Called immediately after action execution. Pauses ALL Playwright/CDP
+        traffic while Browserbase's solver works, so anti-bot systems like
+        Kasada don't detect continued automation during the challenge.
+
+        Browserbase may fire many rapid solving-started/solving-finished pairs
+        (multiple challenges, retries). We can't just check for ANY "finished"
+        event — we must wait for the entire captcha storm to SETTLE (no new
+        events for CAPTCHA_SETTLE_SECONDS) before resuming automation.
+        """
+        CAPTCHA_SETTLE_SECONDS = 3.0
+
+        # Pump the event loop to flush any pending console events
+        try:
+            self.context.cookies()
+        except Exception:
+            pass
+
+        # Grace period: give Browserbase time to detect the CAPTCHA and fire
+        # the console event. Without this, the event may arrive after we've
+        # already moved on, causing us to send CDP commands that disrupt the
+        # solver. We check every 0.5s and break early if an event arrives.
+        if not self.cur_captcha_events:
+            for _ in range(3):
+                time.sleep(0.5)
+                try:
+                    self.context.cookies()
+                except Exception:
+                    pass
+                if self.cur_captcha_events:
+                    break
+
+        # No captcha activity detected — continue normally
+        if not self.cur_captcha_events:
+            return
+
+        # Captcha activity detected — wait for it to FULLY settle.
+        # We track the event count and wait until no new events have arrived
+        # for CAPTCHA_SETTLE_SECONDS, AND the last event is "solving-finished".
+        # This prevents resuming in the middle of rapid-fire captcha retries
+        # where started/finished pairs accumulate but new challenges keep coming.
+        print("⏳ CAPTCHA activity detected — pausing automation until fully settled...")
+        start_time = time.time()
+        last_event_count = len(self.cur_captcha_events)
+        last_change_time = time.time()
+
+        while time.time() - start_time < self.captcha_timeout_seconds:
+            time.sleep(0.5)
+            try:
+                self.context.cookies()
+            except Exception:
+                pass
+
+            current_count = len(self.cur_captcha_events)
+            if current_count != last_event_count:
+                # New events arrived — reset the settling timer
+                last_event_count = current_count
+                last_change_time = time.time()
+                continue
+
+            # Check if settled: no new events for CAPTCHA_SETTLE_SECONDS
+            time_since_last = time.time() - last_change_time
+            if time_since_last >= CAPTCHA_SETTLE_SECONDS:
+                last_event = (
+                    self.cur_captcha_events[-1].get("event", "")
+                    if self.cur_captcha_events
+                    else ""
+                )
+                if last_event == "solving-finished":
+                    elapsed = time.time() - start_time
+                    print(
+                        f"✅ CAPTCHA settled in {elapsed:.1f}s "
+                        f"({last_event_count} events) — resuming automation"
+                    )
+                    break
+                # Last event is solving-started — solver still working, keep waiting
         else:
-            self.context = self.browser.new_context(
-                viewport={"width": self.viewport_width, "height": self.viewport_height}
+            print(
+                f"🔒 Timeout: CAPTCHA not resolved within {self.captcha_timeout_seconds}s "
+                f"({len(self.cur_captcha_events)} events seen)"
             )
-            self.page = self.context.new_page()
+
+        # Post-captcha: wait for redirect/page load to fully settle
+        try:
+            self.page.wait_for_load_state("domcontentloaded", timeout=10000)
+        except Exception:
+            pass
+        time.sleep(1.0)  # buffer for post-captcha navigation
+
+        self.cur_captcha_events = []
 
     def _get_info(self) -> dict[str, Any]:
         info = {"bb_session_id": self.bb_session.id if self.bb_session else None}

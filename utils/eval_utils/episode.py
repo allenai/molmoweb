@@ -4,6 +4,8 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from typing import Any
 
+from tenacity import retry, stop_after_attempt, wait_fixed
+
 from agent.actions import ALL_ACTIONS, SendMsgToUser
 from agent.utils import AgentBase
 
@@ -49,6 +51,7 @@ class Episode:
 
         return result
 
+    @retry(stop=stop_after_attempt(2), wait=wait_fixed(5))
     def _env_step(self, action_obj: ALL_ACTIONS, action_str: str | None = None):
         """Execute an action on the environment."""
         from utils.envs.browser_env import BrowserEnv
