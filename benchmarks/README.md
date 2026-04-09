@@ -49,7 +49,7 @@ Each benchmark ships with a data file under `benchmarks/jsons/`. The `custom` be
 
 **[Online Mind2Web](https://arxiv.org/pdf/2504.01382)** ([leaderboard](https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard)) — 300 real-world web tasks from ~130 websites with three difficulty levels (easy, medium, hard). Judged by `webjudge_online_mind2web`, which uses o4-mini to score trajectories against key points extracted from the task.
 
-**[DeepShop](https://arxiv.org/abs/2506.02839)** — 150 tasks on Amazon.com requiring the agent to apply filters, sort, and identify product attributes. Judged by a specialized GPT-4o prompt.
+**[DeepShop](https://arxiv.org/pdf/2506.02839)** — 150 tasks on Amazon.com requiring the agent to apply filters, sort, and identify product attributes. Judged by a specialized GPT-4o prompt.
 
 **[WebTailBench](https://www.microsoft.com/en-us/research/wp-content/uploads/2025/11/Fara-7B-An-Efficient-Agentic-Model-for-Computer-Use.pdf)** — 609 long-tail web tasks covering uncommon but realistic scenarios. Judged by GPT-4o using the WebVoyager judge format.
 
@@ -105,7 +105,11 @@ Uses accessibility tree input only (no screenshot). Model defaults to `gpt-5` an
 
 ## Environments
 
-The `--env_type` flag controls which browser environment is used.
+The `--env_type` flag controls which browser environment is used. Both environments require Playwright:
+
+```bash
+uv run playwright install && uv run playwright install-deps
+```
 
 ### `simple` (default)
 
@@ -113,12 +117,6 @@ Runs a local Chromium instance via Playwright. No external accounts required. Go
 
 ```bash
 --env_type simple
-```
-
-Requires Playwright browsers to be installed:
-
-```bash
-uv run playwright install && uv run playwright install-deps
 ```
 
 ### `browserbase`
@@ -311,7 +309,7 @@ uv run python -m benchmarks.benchmarks judge \
     --num_workers 10
 ```
 
-Trajectories passing the judge can be used as supervised training data.
+Trajectories passing the judge can be used as supervised training data. See [this walkthrough](https://www.youtube.com/watch?v=-Vlcrxj8uxo) for a step-by-step demo of the full synthetic data generation pipeline.
 
 ---
 
