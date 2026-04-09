@@ -5,6 +5,9 @@ os.environ.setdefault("MOLMO_DATA_DIR", os.path.join(os.environ.get("TMPDIR", "/
 
 import queue
 import torch
+if torch.backends.mps.is_available():
+    torch.set_default_dtype(torch.float32)
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -34,10 +37,24 @@ def create_predictor_pool(
     pool: queue.Queue = queue.Queue(maxsize=num_predictors)
 
     print(f"Using checkpoint: {ckpt}")
-    print(f"GPUs: {torch.cuda.device_count()}, predictors: {num_predictors}, type: {predictor_type}")
+    
+    # Determine device(s)
+    FORCE_DEVICE = os.environ.get("DEVICE")
+    if FORCE_DEVICE:
+        print(f"Forcing device: {FORCE_DEVICE}")
+        devices = [FORCE_DEVICE] * num_predictors
+    elif torch.cuda.is_available():
+        print(f"GPUs: {torch.cuda.device_count()}, predictors: {num_predictors}, type: {predictor_type}")
+        devices = [f"cuda:{i % torch.cuda.device_count()}" for i in range(num_predictors)]
+    elif torch.backends.mps.is_available():
+        print(f"Apple Silicon (MPS) detected, predictors: {num_predictors}, type: {predictor_type}")
+        devices = ["mps"] * num_predictors
+    else:
+        print(f"No GPU found, using CPU, predictors: {num_predictors}, type: {predictor_type}")
+        devices = ["cpu"] * num_predictors
 
     for i in range(num_predictors):
-        device = f"cuda:{i}"
+        device = devices[i]
 
         if predictor_type == "hf":
             predictor = HFActionPredictor(checkpoint=ckpt, device=device)
@@ -98,7 +115,10 @@ def predict(request: PredictRequest):
         try:
             result = predictor.predict(request.prompt, image_np, past_actions=request.past_actions)
         except Exception as e:
-            return f"Predictor error: {str(e)}"
+            import traceback
+            traceback.print_exc()
+            from fastapi import HTTPException
+            raise HTTPException(status_code=500, detail=str(e))
         finally:
             for k, v in saved.items():
                 if v is not None:

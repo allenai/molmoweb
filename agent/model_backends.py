@@ -4,7 +4,12 @@ Inference backends for the multimodal agent.
 All backends implement predict(prompt, image_np, ...) -> str | None.
 Heavy dependencies (torch, olmo) are imported lazily inside each class.
 """
+import torch
+if torch.backends.mps.is_available():
+    torch.set_default_dtype(torch.float32)
+
 import json
+import os
 import logging
 from typing import Any, Optional
 
@@ -97,7 +102,19 @@ class HFActionPredictor:
         import torch
         from transformers import AutoProcessor, AutoModelForImageTextToText
 
-        self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        if device:
+            self.device = device
+        elif torch.cuda.is_available():
+            self.device = "cuda"
+        elif torch.backends.mps.is_available():
+            self.device = "mps"
+        else:
+            self.device = "cpu"
+        
+        # Override to CPU if explicitly requested via environment
+        if os.environ.get("DEVICE") == "cpu":
+            self.device = "cpu"
+
         self.max_new_tokens = max_new_tokens
         self.temperature = temperature
         self.top_p = top_p
@@ -126,6 +143,10 @@ class HFActionPredictor:
         # for image tokens, but molmoweb is trained with pure causal attention.
         inputs = self.processor(images=pil_images, text=text_input, padding=True, return_tensors="pt",
                                 return_mm_token_type_ids=False).to(self.device)
+        if self.device == "mps":
+            for k, v in inputs.items():
+                if torch.is_floating_point(v):
+                    inputs[k] = v.to(torch.float32)
         prompt = self.processor.decode(inputs["input_ids"][0], skip_special_tokens=True)
         sample = self.top_p is not None
         with torch.no_grad():
@@ -166,7 +187,18 @@ class NativeActionPredictor:
         from olmo.train.checkpointer import load_model_state
         from olmo.util import resource_path
 
-        self.device = device or "cuda:0"
+        if device:
+            self.device = device
+        elif torch.cuda.is_available():
+            self.device = "cuda:0"
+        elif torch.backends.mps.is_available():
+            self.device = "mps"
+        else:
+            self.device = "cpu"
+
+        if os.environ.get("DEVICE") == "cpu":
+            self.device = "cpu"
+
         self.max_new_tokens = max_new_tokens
         self.temperature = temperature
         self.top_p = top_p
@@ -193,6 +225,8 @@ class NativeActionPredictor:
             self.model = model_cfg.build_model()
         self.model.to_empty(device=self.device)
         load_model_state(checkpoint, self.model)
+        if self.device == "mps":
+            self.model.to(torch.float32)
         self.model.eval()
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
@@ -217,7 +251,14 @@ class NativeActionPredictor:
         batch = self.preprocessor(dict(image=image, style=style, question=prompt))
         batch["input_ids"] = batch.pop("input_tokens")
         batch.pop("metadata")
-        batch = {k: torch.as_tensor(np.expand_dims(v, 0), device=self.device) for k, v in batch.items()}
+        batch = {k: np.expand_dims(v, 0) for k, v in batch.items()}
+        torch_batch = {}
+        for k, v in batch.items():
+            t = torch.as_tensor(v)
+            if torch.is_floating_point(t):
+                t = t.to(torch.float32)
+            torch_batch[k] = t.to(self.device)
+        batch = torch_batch
         
         if self.top_p is not None:
             sampler = TopPSampler(p=self.top_p, temperature=self.temperature, with_replacement=False)
@@ -228,6 +269,11 @@ class NativeActionPredictor:
             self._logged_sampler = True
 
         with torch.inference_mode():
+            if self.device == "mps":
+                self.model.to(torch.float32)
+                for k, v in batch.items():
+                    if torch.is_floating_point(v):
+                        batch[k] = v.to(torch.float32)
             output = self.model.generate(batch, max_steps=self.max_new_tokens, sampler=sampler, beam_size=1)
 
         tokens = output.token_ids[0][0]

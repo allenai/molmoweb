@@ -18,6 +18,7 @@ import asyncio
 import base64
 import logging
 import os
+import sys
 import time
 from abc import ABC, abstractmethod
 from datetime import UTC, datetime, timezone
@@ -60,12 +61,16 @@ def _wait_ready(page, timeout_ms: int = 10000):
 
 def _take_screenshot(page) -> np.ndarray:
     try:
-        cdp = page.context.new_cdp_session(page)
-        result = cdp.send("Page.captureScreenshot", {"format": "png"})
-        cdp.detach()
-        raw = base64.b64decode(result["data"])
+        raw = page.screenshot(timeout=30000, animations="disabled")
     except Exception:
-        raw = page.screenshot(timeout=10000, animations="disabled")
+        try:
+            cdp = page.context.new_cdp_session(page)
+            result = cdp.send("Page.captureScreenshot", {"format": "png"})
+            cdp.detach()
+            raw = base64.b64decode(result["data"])
+        except Exception:
+            # Last resort
+            raw = page.screenshot(timeout=10000)
     return np.array(Image.open(BytesIO(raw)).convert("RGB"))
 
 
@@ -525,9 +530,17 @@ class SimpleEnv(BrowserEnv):
 
     def _launch(self):
         self.playwright = _start_playwright()
+        args = list(self.STEALTH_ARGS)
+        if sys.platform == "darwin":
+            args.extend([
+                "--disable-gpu",
+                "--disable-software-rasterizer",
+                "--force-cpu-draw",
+            ])
+
         launch_opts: dict = {
             "headless": self.headless,
-            "args": self.STEALTH_ARGS,
+            "args": args,
         }
         if self.channel:
             launch_opts["channel"] = self.channel
