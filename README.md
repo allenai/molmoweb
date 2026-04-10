@@ -35,6 +35,7 @@
   - [Downloading Pretrained Checkpoints](#downloading-pretrained-checkpoints)
   - [SFT Training](#sft-training)
 - [Grounding Evaluation](#grounding-evaluation)
+- [Citation](#citation)
 - [License](#license)
 
 ---
@@ -218,7 +219,7 @@ trajectories = client.run_batch(
 
 Supported backends: `fastapi` (remote HTTP endpoint), `modal` (serverless), `native` (native molmo/olmo-compatible checkpoint), `hf` (HuggingFace Transformers-compatible checkpoint).
 
-> **vLLM support coming soon.**
+> **vLLM support**: We leave vLLM integration to users. Please be cautious, as vLLM does not support the exact attention backend used in OLMo, which may lead to unexpected behavior or reduced accuracy.
 
 ### Extract Accessibility Tree
 
