@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Task Study</title>
+    <link rel="stylesheet" href="side-panel.css">
+</head>
+<body>
+    <div id="side-panel">
+        <h1>Task annotation</h1>
+        <div id="instructions-and-answers">
+            <details open class="sticky-section">
+                <summary>Latest Screenshot</summary>
+                <div id="latest-screenshot-container">
+                    <img id="latest-screenshot" style="max-width: 100%; height: auto; display: none;" alt="Latest screenshot">
+                    <p id="no-screenshot-message">No screenshot captured yet.</p>
+                    <br>
+                    <div id="screenshot-loading-spinner" class="loading-spinner" style="display: none;">
+                        <div class="spinner"></div>
+                        <p>Capturing screenshot...</p>
+                    </div>
+                </div>
+            </details>
+
+            <br>
+
+            <details open>
+                <summary>Instructions</summary>
+                <p>
+                    <p id="dynamic-instruction">Loading task instruction...</p>
+                    <div id="dynamic-task-steps">Loading task steps...</div>
+                </p>
+            </details>
+
+        </div>
+        <div id="session-finished-instructions" data-hidden="true">
+            <p>Thank you for recording your session. Please go to <a id="redirect-location"></a> to ensure your contribution has been recorded. You can return to the starting page in your other window if you want to view the events we recorded.</p>
+        </div>
+
+        <div id="upload-failed-instructions" data-hidden="true">
+            Something went wrong when uploading your session. Please try again.
+            <button id="retry-upload-button">Retry upload</button>
+            More details:
+            <div id="upload-failed-details"></div>
+        </div>
+
+        <details open>
+            <summary>Previous Messages</summary>
+            <ol id="user-messages-list"></ol>
+        </details>
+
+    </div> 
+    <script src="./side-panel.js"></script>
+</body>
+</html>

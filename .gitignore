@@ -222,6 +222,8 @@ beaker/
 
 checkpoints/
 *.html
+# Extension UI (manifest side_panel / offscreen); do not ignore alongside generic *.html above
+!annotation/molmoweb_extension/**/*.html
 
 *debug*
 datasets/
