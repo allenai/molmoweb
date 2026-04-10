@@ -473,13 +473,20 @@ bash run_ground_eval.sh
 
 ---
 
+## Citation
+
+```bibtex
+@misc{gupta2026molmowebopenvisualweb,
+      title={MolmoWeb: Open Visual Web Agent and Open Data for the Open Web}, 
+      author={Tanmay Gupta and Piper Wolters and Zixian Ma and Peter Sushko and Rock Yuren Pang and Diego Llanes and Yue Yang and Taira Anderson and Boyuan Zheng and Zhongzheng Ren and Harsh Trivedi and Taylor Blanton and Caleb Ouellette and Winson Han and Ali Farhadi and Ranjay Krishna},
+      year={2026},
+      eprint={2604.08516},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2604.08516}, 
+}
+```
+
 ## License
 
 Apache 2.0. See [LICENSE](LICENSE) for details.
-
-## TODO
-
-- [x] Inference
-- [x] Eval
-- [x] Training
-- [x] Annotation Tool
