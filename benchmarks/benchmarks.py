@@ -185,7 +185,7 @@ def _load_samples(benchmark: str, data_path: str | None = None) -> list[dict]:
 
 def run(
     results_dir: str,
-    agent_type: Literal["gemini_cua", "gemini_axtree", "gpt_axtree", "molmoweb"],
+    agent_type: Literal["gemini_cua", "gemini_axtree", "gpt_axtree", "molmoweb", "qwen35"],
     benchmark: Literal["custom", "deepshop", "webvoyager", "online_mind2web", "webtailbench"] = "custom",
     data_path: str | None = None,
     subset: str = "full",

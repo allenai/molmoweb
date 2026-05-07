@@ -102,6 +102,7 @@ def get_trajectory(
         "gemini_axtree",
         "gpt_axtree",
         "molmoweb",
+        "qwen35",
     ],
     inference_mode: Literal["local", "fastapi", "modal", "native", None] = "native",
     endpoint_or_checkpoint: str | None = None,
@@ -119,7 +120,7 @@ def get_trajectory(
     print(f"Starting task {sample['id']} (env={env_type})")
 
     start_url = sample.get("start_url", "about:blank")
-    need_axtree = agent_type in ("gpt_axtree", "gemini_axtree")
+    need_axtree = agent_type in ("gpt_axtree", "gemini_axtree", "qwen35")
     native_polyfill = sample.get("web_name", "").lower() in ("espn", "amazon")
     is_om2w = sample.get("task_type", "").startswith("online_mind2web")
 
@@ -177,6 +178,16 @@ def get_trajectory(
                 max_past_images=max_past_images,
                 sampling_temperature=sampling_temperature,
                 sampling_top_p=sampling_top_p,
+            )
+        elif agent_type == "qwen35":
+            from agent.qwen35 import Qwen35Agent
+            ckpt = endpoint_or_checkpoint or "/weka/oe-training-default/new_peters/qwen/Qwen3.5-9B"
+            agent = Qwen35Agent(
+                checkpoint=ckpt,
+                device=device,
+                temperature=sampling_temperature,
+                top_p=sampling_top_p,
+                max_past_steps=max_past_steps,
             )
         else:
             raise ValueError(f"Unknown agent type: {agent_type}")
@@ -278,6 +289,7 @@ def get_trajectories(
         "gemini_axtree",
         "gpt_axtree",
         "molmoweb",
+        "qwen35",
     ],
     inference_mode: Literal[
         "local", "fastapi", "modal", "native"

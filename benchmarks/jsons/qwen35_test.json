@@ -1,0 +1,9 @@
+[
+  {
+    "id": "Allrecipes--0",
+    "prompt": "On allrecipes.com, find a vegetarian lasagna recipe with more than 100 reviews and a rating of at least 4.5 stars suitable for 6 people.",
+    "start_url": "https://www.allrecipes.com/",
+    "task_type": "custom",
+    "web_name": "Allrecipes"
+  }
+]
