@@ -35,6 +35,7 @@ Both stages are driven by `benchmarks/benchmarks.py`, a [Fire](https://github.co
 |------|--------------|-----------|----------------|
 | WebVoyager | `webvoyager` | 595 | `webvoyager` (GPT-4o) |
 | Online Mind2Web | `online_mind2web` | 300 | `webjudge_online_mind2web` (o4-mini) |
+| Odysseys | `odysseys` | 200 | `odysseys_rubric` (Gemini rubric judge) |
 | DeepShop | `deepshop` | 150 | `deepshop_judge` (GPT-4o) |
 | WebTailBench | `webtailbench` | 609 | `webvoyager` (GPT-4o) |
 | Custom | `custom` | *(your data)* | `webvoyager` (GPT-4o) |
@@ -48,6 +49,8 @@ Each benchmark ships with a data file under `benchmarks/jsons/`. The `custom` be
 **[WebVoyager](https://arxiv.org/pdf/2401.13919)** — ~600 open-ended web tasks spanning 15 websites. Judged by GPT-4o using screenshots and the agent's final answer.
 
 **[Online Mind2Web](https://arxiv.org/pdf/2504.01382)** ([leaderboard](https://huggingface.co/spaces/osunlp/Online_Mind2Web_Leaderboard)) — 300 real-world web tasks from ~130 websites with three difficulty levels (easy, medium, hard). Judged by `webjudge_online_mind2web`, which uses o4-mini to score trajectories against key points extracted from the task.
+
+**[Odysseys](https://odysseys-website.pages.dev/)** — 200 long-horizon web tasks with the same run-time task schema as Online Mind2Web. MolmoWeb includes a rubric-based judge adapted from the upstream Odysseys evaluation script.
 
 **[DeepShop](https://arxiv.org/pdf/2506.02839)** — 150 tasks on Amazon.com requiring the agent to apply filters, sort, and identify product attributes. Judged by a specialized GPT-4o prompt.
 
@@ -333,7 +336,7 @@ uv run python -m benchmarks.benchmarks run [OPTIONS]
 |----------|------|---------|-------------|
 | `results_dir` | `str` | *(required)* | Output directory for trajectory logs. |
 | `agent_type` | `str` | *(required)* | Agent: `molmoweb`, `gemini_cua`, `gemini_axtree`, `gpt_axtree`. |
-| `benchmark` | `str` | `"custom"` | Benchmark: `custom`, `deepshop`, `webvoyager`, `online_mind2web`, `webtailbench`. |
+| `benchmark` | `str` | `"custom"` | Benchmark: `custom`, `deepshop`, `webvoyager`, `online_mind2web`, `odysseys`, `webtailbench`. |
 | `data_path` | `str` | `None` | Override the default data file for the benchmark. Required for `custom`. |
 | `inference_mode` | `str` | `None` | `fastapi`, `native`, or `modal`. Required for `molmoweb`. |
 | `endpoint_or_checkpoint` | `str` | `None` | HTTP URL (fastapi/modal) or local path / HF model ID (local/native). |
@@ -362,7 +365,7 @@ uv run python -m benchmarks.benchmarks judge [OPTIONS]
 | `results_dir` | `str` | *(required)* | Directory with trajectory logs to judge. |
 | `benchmark` | `str` | `"custom"` | Benchmark name (must match `run`). |
 | `data_path` | `str` | `None` | Override data file path. |
-| `judge_type` | `str` | *(benchmark default)* | `webvoyager`, `deepshop_judge`, or `webjudge_online_mind2web`. |
+| `judge_type` | `str` | *(benchmark default)* | `webvoyager`, `deepshop_judge`, `webjudge_online_mind2web`, or `odysseys_rubric`. |
 | `num_workers` | `int` | `30` | Parallel judging workers. |
 | `seed` | `int` | `123` | Random seed. |
 | `grouping_mode` | `str` | *(benchmark default)* | How to group results in the report (`website`, `online_mind2web`, `deepshop_paper`). |

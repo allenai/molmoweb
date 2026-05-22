@@ -236,7 +236,7 @@ client.close()
 
 ## Benchmarks
 
-The `benchmarks/` directory contains the unified evaluation framework. It supports five benchmarks out of the box: **WebVoyager**, **Online Mind2Web**, **DeepShop**, **WebTailBench**, and **Custom** (bring your own tasks).
+The `benchmarks/` directory contains the unified evaluation framework. It supports six benchmarks out of the box: **WebVoyager**, **Online Mind2Web**, **Odysseys**, **DeepShop**, **WebTailBench**, and **Custom** (bring your own tasks).
 
 The evaluation pipeline has two stages:
 
@@ -320,7 +320,7 @@ uv run python -m benchmarks.benchmarks judge \
 |----------|------|---------|-------------|
 | `results_dir` | `str` | *(required)* | Output directory for trajectory logs. |
 | `agent_type` | `str` | *(required)* | Agent to use: `molmoweb`, `gemini_cua`, `gemini_axtree`, or `gpt_axtree`. |
-| `benchmark` | `str` | `"custom"` | Benchmark name: `custom`, `deepshop`, `webvoyager`, `online_mind2web`, or `webtailbench`. |
+| `benchmark` | `str` | `"custom"` | Benchmark name: `custom`, `deepshop`, `webvoyager`, `online_mind2web`, `odysseys`, or `webtailbench`. |
 | `data_path` | `str` | `None` | Override the default data file path for the chosen benchmark. |
 | `inference_mode` | `str` | `None` | How to connect to the model: `fastapi` (HTTP endpoint), `local` (in-process HF), `modal` (Modal serverless), or `native` (in-process OLMo). |
 | `endpoint_or_checkpoint` | `str` | `None` | Either an HTTP URL (for `fastapi`/`modal`) or a local path / HF model ID (for `local`/`native`). |
@@ -337,7 +337,7 @@ uv run python -m benchmarks.benchmarks judge \
 | `results_dir` | `str` | *(required)* | Directory containing trajectory logs to judge. |
 | `benchmark` | `str` | `"custom"` | Benchmark name (must match what was used during `run`). |
 | `data_path` | `str` | `None` | Override data file path. |
-| `judge_type` | `str` | `None` | Judge implementation. Defaults to the benchmark's default judge. Options: `webvoyager` (GPT-4o), `deepshop_judge`, `webjudge_online_mind2web`. |
+| `judge_type` | `str` | `None` | Judge implementation. Defaults to the benchmark's default judge. Options: `webvoyager` (GPT-4o), `deepshop_judge`, `webjudge_online_mind2web`, `odysseys_rubric` (Gemini rubric judge). |
 | `num_workers` | `int` | `30` | Number of parallel judging workers. |
 
 See [benchmarks/README.md](benchmarks/README.md) for full documentation.
