@@ -121,7 +121,8 @@ def get_trajectory(
     start_url = sample.get("start_url", "about:blank")
     need_axtree = agent_type in ("gpt_axtree", "gemini_axtree")
     native_polyfill = sample.get("web_name", "").lower() in ("espn", "amazon")
-    is_om2w = sample.get("task_type", "").startswith("online_mind2web")
+    task_type = sample.get("task_type", "")
+    uses_robust_navigation = task_type.startswith("online_mind2web") or task_type.startswith("odysseys")
 
     try:
         if env_type == "simple":
@@ -134,15 +135,15 @@ def get_trajectory(
         else:
             if native_polyfill:
                 print(f"{sample.get('web_name')} detected -- using native polyfill for {sample['id']}")
-            if is_om2w:
-                print(f"om2w task -- using robust navigation for {sample['id']}")
+            if uses_robust_navigation:
+                print(f"robust navigation enabled for {sample['id']}")
             from utils.envs import BrowserbaseEnv
             env = BrowserbaseEnv(
                 start_url=start_url,
                 goal=sample["prompt"],
                 extract_axtree=need_axtree,
                 native_polyfill=native_polyfill,
-                robust_navigation=is_om2w,
+                robust_navigation=uses_robust_navigation,
             )
     except Exception as e:
         print(f"Error in env creation: {str(e)}")
@@ -569,6 +570,25 @@ def judge_trajectory(sample, exp_dir, judge_type, score_threshold=3):
                 verdict_thought=verdict.thought,
                 verdict_judgement=verdict.verdict,
             )
+        elif judge_type == "odysseys_rubric":
+            from benchmarks.judges.odysseys_judge import get_odysseys_rubric_verdict
+            verdict = get_odysseys_rubric_verdict(
+                task=sample["prompt"],
+                rubrics=sample.get("rubrics"),
+                sample_dir=eps_dir,
+            )
+            LocalEpisodeLogger(eps_dir).log_json(
+                data=verdict, fname=f"{judge_type}_verdict.json"
+            )
+            return EvaluatedSample(
+                id=eps_name,
+                task=sample["prompt"],
+                status="COMPLETE",
+                last_screenshot=f"{eps_name}/images/screenshot_{str(len(screenshots)).zfill(3)}.png",
+                answer=answer,
+                verdict_thought=verdict["thought"],
+                verdict_judgement=verdict["verdict"],
+            )
         else:
             raise ValueError(f"Unsupported judge_type: {judge_type}")
 
@@ -581,10 +601,153 @@ def judge_trajectory(sample, exp_dir, judge_type, score_threshold=3):
         )
 
 
+def _render_odysseys_report(records, samples, results_dir, judge_type, grouping_mode):
+    id_to_level = {
+        sample["id"]: sample["level"]
+        for sample in samples
+        if "level" in sample
+    }
+    groups = {}
+    verdicts = {}
+    for record in records:
+        if grouping_mode == "online_mind2web" and record.id in id_to_level:
+            group_id = id_to_level[record.id]
+        else:
+            parts = record.id.split("_")
+            group_id = "_".join(parts[:-1]) if len(parts) > 1 else record.id
+        groups.setdefault(group_id, []).append(record)
+
+        verdict_path = os.path.join(results_dir, record.id, f"{judge_type}_verdict.json")
+        if record.status == "COMPLETE" and os.path.exists(verdict_path):
+            try:
+                with open(verdict_path, "r") as f:
+                    verdicts[record.id] = json.load(f)
+            except Exception:
+                pass
+
+    def _summarize(group_records):
+        complete = 0
+        total_rubrics = 0
+        total_rubric_score = 0
+        perfect = 0
+        total_steps = 0
+        total_traj_eff = 0
+        for record in group_records:
+            verdict = verdicts.get(record.id)
+            if verdict is None:
+                continue
+            rubric_scores = verdict.get("rubric_scores", {})
+            complete += 1
+            total_rubrics += len(rubric_scores)
+            total_rubric_score += sum(rubric_scores.values())
+            perfect += int(bool(verdict.get("perfect")))
+            total_steps += verdict.get("num_steps", 0)
+            total_traj_eff += verdict.get("trajectory_efficiency_x100", 0)
+
+        missing = len(group_records) - complete
+        if complete == 0:
+            return {
+                "missing": missing,
+                "complete": 0,
+                "rubric avg": -1,
+                "perfect": -1,
+                "steps": -1,
+                "traj eff": -1,
+            }
+        return {
+            "missing": missing,
+            "complete": complete,
+            "rubric avg": round(100 * total_rubric_score / total_rubrics, 2) if total_rubrics > 0 else 0.0,
+            "perfect": round(100 * perfect / complete, 2),
+            "steps": round(total_steps / complete, 2),
+            "traj eff": round(total_traj_eff / complete, 4),
+        }
+
+    columns = ["id", "missing", "complete", "rubric avg", "perfect", "steps", "traj eff"]
+    rows = [{"id": "ALL TASKS", **_summarize(records)}]
+
+    category_order = ["easy", "medium", "hard"] if grouping_mode == "online_mind2web" else sorted(groups.keys())
+    for group_id in category_order:
+        if group_id in groups:
+            rows.append({"id": group_id, **_summarize(groups[group_id])})
+
+    table = create_table(columns=columns, rows=rows)
+
+    elements = [
+        ft.Details(
+            ft.Summary(ft.B("Summary Stats"), role="button"),
+            table,
+        ),
+        ft.Hr(),
+        ft.H3("Verdicts"),
+    ]
+    for record in records:
+        verdict = verdicts.get(record.id)
+        metric_lines = ""
+        if verdict is not None:
+            metric_lines = (
+                f"Rubric Avg: {verdict.get('average_rubric_score', 0) * 100:.2f}\n"
+                f"Perfect: {100 if verdict.get('perfect') else 0:.2f}\n"
+                f"Steps: {verdict.get('num_steps', 0)}\n"
+                f"Traj Eff: {verdict.get('trajectory_efficiency_x100', 0):.4f}"
+            )
+        elements.extend(
+            [
+                ft.Card(
+                    ft.Div(ft.I(record.task)),
+                    (
+                        ft.Div(
+                            ft.Div(
+                                ft.Img(src=record.last_screenshot),
+                                cls="col-xs-6",
+                            ),
+                            ft.Div(
+                                ft.H6("Answer"),
+                                ft.P(record.answer),
+                                ft.H6("Metrics"),
+                                ft.Pre(metric_lines),
+                                ft.H6("Judgement"),
+                                ft.Details(
+                                    ft.Summary(record.verdict_judgement),
+                                    ft.P(record.verdict_thought),
+                                ),
+                                cls="col-xs-6",
+                            ),
+                            cls="row",
+                        )
+                        if record.status == "COMPLETE"
+                        else ""
+                    ),
+                    header=ft.B(record.id),
+                    footer=ft.A(
+                        "Trajectory",
+                        href=f"{record.id}/trajectory.html",
+                    ),
+                )
+            ]
+        )
+
+    save_html(
+        elements, os.path.join(results_dir, f"!__{judge_type}_verdicts.html")
+    )
+
+    overall = _summarize(records)
+    sep = "=" * 50
+    print(f"\n{sep}")
+    print(f"Judge: {judge_type}")
+    print(
+        "Rubric Avg: "
+        f"{overall['rubric avg']}  Perfect: {overall['perfect']}  "
+        f"Steps: {overall['steps']}  Traj Eff: {overall['traj eff']}"
+    )
+    print(f"Missing: {overall['missing']}  Complete: {overall['complete']}")
+    print(sep)
+
+
 def judge_trajectories(
     samples: list[dict],
     results_dir: str,  # where to save results for this eval run
-    judge_type: Literal["webvoyager", "webjudge_online_mind2web", "deepshop_judge"] = "webvoyager",
+    judge_type: Literal["webvoyager", "webjudge_online_mind2web", "deepshop_judge", "odysseys_rubric"] = "webvoyager",
     num_workers: int = 5,
     grouping_mode: str | None = None,
 ):
@@ -625,6 +788,16 @@ def judge_trajectories(
             finally:
                 if not future.done():
                     future.cancel()
+
+    if judge_type == "odysseys_rubric":
+        _render_odysseys_report(
+            records=records,
+            samples=samples,
+            results_dir=results_dir,
+            judge_type=judge_type,
+            grouping_mode=grouping_mode,
+        )
+        return
 
     # Create mapping from sample id to level for online_mind2web grouping
     id_to_level = {}

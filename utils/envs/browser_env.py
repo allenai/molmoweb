@@ -20,7 +20,7 @@ import logging
 import os
 import time
 from abc import ABC, abstractmethod
-from datetime import UTC, datetime, timezone
+from datetime import datetime, timezone
 from io import BytesIO
 from typing import Any
 
@@ -371,7 +371,7 @@ class BrowserbaseEnv(BrowserEnv):
                 self.cur_captcha_events.append(
                     {
                         "event": "solving-started",
-                        "timestamp": datetime.now(UTC).isoformat(),
+                        "timestamp": datetime.now(timezone.utc).isoformat(),
                     }
                 )
             elif msg.text == "browserbase-solving-finished":
@@ -379,7 +379,7 @@ class BrowserbaseEnv(BrowserEnv):
                 self.cur_captcha_events.append(
                     {
                         "event": "solving-finished",
-                        "timestamp": datetime.now(UTC).isoformat(),
+                        "timestamp": datetime.now(timezone.utc).isoformat(),
                     }
                 )
 

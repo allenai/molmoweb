@@ -4,7 +4,7 @@ Unified benchmark runner for all evaluation benchmarks.
 Each benchmark is a different data loader that produces samples in a standard format:
     {"id": str, "prompt": str, "start_url": str, "task_type": str, ...}
 
-Supported benchmarks: custom, deepshop, webvoyager, online_mind2web, webtailbench
+Supported benchmarks: custom, deepshop, webvoyager, online_mind2web, odysseys, webtailbench
 """
 import fire
 import json
@@ -32,6 +32,7 @@ JSONS_DIR = Path(__file__).parent / "jsons"
 DEEPSHOP_JSONL_PATH = str(JSONS_DIR / "deepshop.jsonl")
 WEBVOYAGER_DATA_PATH = str(JSONS_DIR / "webvoyager.jsonl")
 ONLINE_MIND2WEB_DATA_PATH = str(JSONS_DIR / "online_mind2web.json")
+ODYSSEYS_DATA_PATH = str(JSONS_DIR / "odysseys.json")
 WEBTAILBENCH_JSON_PATH = str(JSONS_DIR / "webtailbench.json")
 
 
@@ -120,6 +121,25 @@ def load_online_mind2web(data_json: str) -> list[dict]:
     return samples
 
 
+def load_odysseys(data_json: str) -> list[dict]:
+    with open(data_json) as f:
+        tasks = json.load(f)
+
+    samples = []
+    for task in tasks:
+        sample = {
+            "id": task["task_id"],
+            "prompt": task["confirmed_task"],
+            "start_url": task["website"],
+            "level": task["level"],
+            "task_type": f"odysseys-{task['level']}",
+            "rubrics": task["rubrics"],
+        }
+        samples.append(sample)
+
+    return samples
+
+
 def load_webtailbench(data_json: str) -> list[dict]:
     with open(data_json, "r") as f:
         tasks = json.load(f)
@@ -164,6 +184,12 @@ BENCHMARK_DEFAULTS = {
         "default_judge": "webjudge_online_mind2web",
         "grouping_mode": "online_mind2web",
     },
+    "odysseys": {
+        "loader": load_odysseys,
+        "data_path": ODYSSEYS_DATA_PATH,
+        "default_judge": "odysseys_rubric",
+        "grouping_mode": "online_mind2web",
+    },
     "webtailbench": {
         "loader": load_webtailbench,
         "data_path": WEBTAILBENCH_JSON_PATH,
@@ -186,7 +212,7 @@ def _load_samples(benchmark: str, data_path: str | None = None) -> list[dict]:
 def run(
     results_dir: str,
     agent_type: Literal["gemini_cua", "gemini_axtree", "gpt_axtree", "molmoweb"],
-    benchmark: Literal["custom", "deepshop", "webvoyager", "online_mind2web", "webtailbench"] = "custom",
+    benchmark: Literal["custom", "deepshop", "webvoyager", "online_mind2web", "odysseys", "webtailbench"] = "custom",
     data_path: str | None = None,
     subset: str = "full",
     inference_mode: Literal["local", "fastapi", "modal", "native", None] = None,
@@ -244,12 +270,13 @@ def run(
 
 def judge(
     results_dir: str,
-    benchmark: Literal["custom", "deepshop", "webvoyager", "online_mind2web", "webtailbench"] = "custom",
+    benchmark: Literal["custom", "deepshop", "webvoyager", "online_mind2web", "odysseys", "webtailbench"] = "custom",
     data_path: str | None = None,
     judge_type: Literal[
         "webjudge_online_mind2web",
         "webvoyager",
         "deepshop_judge",
+        "odysseys_rubric",
     ] | None = None,
     num_workers: int = 30,
     seed: int = 123,
