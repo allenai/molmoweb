@@ -14,7 +14,7 @@ dependencies = [
     "isort>=5.13.2",
     "jinja2>=3.1.5",
     "openai>=2.8.1",
-    "playwright==1.44",
+    "playwright>=1.49.0",
     "python-fasthtml>=0.12.4",
     "tenacity==9.1.2",
     "transformers>=4.51,<5",
@@ -23,6 +23,8 @@ dependencies = [
     "molmo-utils>=0.0.1",
     "torchmetrics>=1.0.0",
     "backoff>=2.0.0",
+    "jupyterlab>=4.5.6",
+    "ipywidgets>=8.1.8",
 ]
 
 [tool.isort]
