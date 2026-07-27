@@ -1,0 +1,301 @@
+task_id,confirmed_task,website,reference_length,level,taxonomy
+b7258ee05d75e6c50673a59914db412e,Find the store location and hours of the closest Gamestop to zip code 90028 and set it as the home store on Gamestop.,https://www.gamestop.com/,8,medium,Speciality
+ade4c09ad3fdb1607209750924cd232f,Compare available plans for the AeroAPI on Flightaware.,https://www.flightaware.com/,4,easy,Airlines
+fb7b4f784cfde003e2548fdf4e8d6b4f,Open the page with an overview of the submission of releases on Discogs.,https://www.discogs.com/,6,medium,Music
+824eb7bb0ef1ce40bfd49c12182d9428,Get the lowest priced women's plus size one piece swimsuit in color black with a customer rating of at least 5 on Kohls.,https://www.kohls.com/,13,hard,Department
+046138801a05ddf56ad94e8672942496,Find discussions of the community and open one with the most replies on Flightaware.,https://www.flightaware.com/,6,medium,Airlines
+92a3d4236f167af4afdc08876a902ba6,Find a 2022 Tesla Model 3 on CarMax.,https://www.carmax.com/,10,medium,Auto
+48c73f3f53e2611c4a1052457c1033db,Get the report from the final environmental impact statement for the Jamaica Bus Depot expansion on new.mta.info.,https://new.mta.info/,10,medium,Ground
+8f2611047de227a2ca8bda13f6e2e5fb,"Find the used 2012-2013 Honda Crosstour with the lowest mileage for under $25,000 near zip code 49102 on CarGurus.",https://www.cargurus.com/,17,hard,Auto
+b320c68bffc1f3c7f2a8dc9d5478fb27,"Find a walkthrough for the game ""The Legend of Zelda: Breath of the Wild"" on ign.",https://www.ign.com/,6,medium,Game
+aa4b5cb7114fcc138ade82b4b9716d24,Find an editor's choice review with a score of 10 in the boardgame category on ign.,https://www.ign.com/,8,medium,Game
+005be9dd91c95669d6ddde9ae667125c,Find the weight of baggage allowance for economy class on Qatar Airways.,https://www.qatarairways.com/,4,easy,Airlines
+323bd85e3559655d89e5496b951a25e8,Tell me information about what identification I need to bring on my trip on Amtrak.,https://www.amtrak.com/,6,medium,Ground
+123e8c2fc453f55fadd1d0b9aaf94df4,Browse used Audi cars made before 2015 and sort by lowest price on KBB.,https://www.kbb.com/,8,medium,Auto
+56f8890a837c49f7df766b9c981646f3,"Show crazy credits for the movie "" Prometheus"" on IMDb.",https://www.imdb.com/,6,medium,Movie
+644a856c3897665e475e0dce50bf217d,Find a pair of wireless headphones on Amazon with active noise canceling for $100 or less and add them to the cart.,https://www.amazon.com/,8,medium,General
+62f1626ce249c31098854f8b38bdd6cf,Find Playstation 5 digital edition on gamestop.,https://www.gamestop.com/,6,medium,Speciality
+561693d6eec7bbfba3fefe9e4b26decb,Browse Marriott Bonvoy credit cards on Marriott.,https://www.marriott.com/,4,easy,Hotel
+b7a9a6b5d451164c09bbd27b670bc2ae,"Show me the list of Men's Blazers, Black, Size M on Uniqlo.",https://www.uniqlo.com/,11,hard,Department
+bfa2de159be6978acf2702be31a2eeeb,Show me the options for a roundtrip leaving from Las Vegas on flexible dates on the interactive map on united.,https://www.united.com/,12,hard,Airlines
+4091bdd3fa64a5b0d912bc08eaf9c824,Find the list of neighborhood maps for Brooklyn on new.mta.info.,https://new.mta.info/,5,easy,Ground
+79f0bd7df6e685f30f20025cc6755c0a,Find me the cheapest external Hard Drive for an Xbox One on GameStop.,https://www.gamestop.com/,13,hard,Speciality
+6ebde509dca8f15c0fa1bd74f071e8d6,"Search for a job in Miami, Florida, in Human Resources on target.",https://www.target.com/,14,hard,Department
+34ccd15a8ea8fd3895af83f5ccf62369,Find out what to do when I lose an item on a bus on us.megabus.,https://us.megabus.com/,3,easy,Ground
+c698ff3fc0f6cbce39947c597ab5749b,Browse the page with event planning tips on Eventbrite.,https://www.eventbrite.com/,5,easy,Event
+b6d10e9bd19b4009a02dea0e98f4e1ae,Check the current standings for MLS on Fox Sports.,https://www.foxsports.com/,4,easy,Sports
+d71be72aa25c3eab8eea47a0e60382e2,Find technical specs for the latest Macbook Air on Apple.,https://www.apple.com/,4,easy,Digital
+0b51b4fa0295ae80ccd176ebdad6fff6,Search for a red Toyota Corolla from model years 2018 to 2023 on CarMax.,https://www.carmax.com/,13,hard,Auto
+3f312ae3efc3c3e90ababe050dd4e7ae,Find the current NFL standings for the AFC East division on NFL.com and go to the page on which team is in first place.,https://www.nfl.com/,4,easy,Sports
+95cad96f2e43f3c0d8efad1331c77c8c,View the list of the Most Popular TV on rotten tomatoes.,https://www.rottentomatoes.com/,3,easy,Movie
+bf3b311cc8dce16d3de844f4b5875dfd,Compare Apple watches and  learn more about the ultra version on apple.,https://www.apple.com/,4,easy,Digital
+b64f938af842f6a1b4489d0e49a785a7,Get the frozen vegan cheese pizza between 5 to 10 USD on Target.,https://www.target.com/,17,hard,Department
+5e1b8254c123c80178cc28e0afdb14f0,Find a help page about buying tickets on seatgeek.,https://seatgeek.com/,4,easy,Event
+f27c0a7b8b0bb33d37698dff227fc8d7,Browse used Mercedes-Benz cars from model years 2004 to 2012 on KBB and sort by highest price.,https://www.kbb.com/,11,hard,Auto
+8fdec8eeffd3491e6526cc78c028120b,"See Nissan and Honda cars for sale near Kentwood, MI 49512 on CarMax.",https://www.carmax.com/,12,hard,Auto
+7b182a5087347d494b48a29dbc0f1d3e,Find a shelter or rescue group near zip code 90011.,https://www.adoptapet.com/,4,easy,Pet
+828c2d98616a9478d5864d847d5a1b28,Browse the list of Civil Division forms.,https://www.justice.gov/,4,easy,Government
+608c595eec271fa5dc03506923519994,Calculate a FedEx Ground shipping rate for a 3-pound package from zip code 10019 to zip code 90028.,https://www.fedex.com/en-us/home.html,9,medium,Shipping
+a7a73c8fa75441fc76df9746c327bdd6,Estimate the cost of a photographer in 07055 for a 4-hour project.,https://www.thumbtack.com/,8,medium,Home service
+cfafe3771369d1d261e9f7ecd44c296d,Find the highest-rated dealer for Cadillac with a rating above 4 stars within 20 miles of zip 60606.,https://www.cars.com/,6,medium,Auto
+bbbc243b4f18a7a897f0bc84e11d293f,Find out how many assists Chris Paul has been averaging in the current season.,https://www.nba.com/,4,easy,Sports
+816851ff92ff0219acf4364dcc2c4692,Search for boys' infant pajamas below $40.,https://www.macys.com/,10,medium,Department
+8244409b2c82043f966cad05f9afe132,"Find the best Audiologist within 50 miles of New York, NY, with a rating of 4 and above.",https://doctor.webmd.com/,13,hard,Health
+e7301bb694871429bf2eb36c3a72186c,Find baby shoes priced under $20 with a 5-star rating.,https://www.macys.com/,6,medium,Department
+905cb53061c33aa2d77e485fe1fca516,Browse dermatologists within 10 miles of zip code 10019 and filter by only those who accept Blue Medicare Advantage.,https://www.healthgrades.com/,11,hard,Health
+fcf4952d2a1d80ea505c555c3c3b54e7,"Find the cheapest used  8-cylinder bmw made between 2005-2015 and priced from 25,000 to  50,000 dollars with mileage less than 50,000 miles or less.",https://www.cars.com/,11,hard,Auto
+3c1ffc3f494e423b3c434c79e35da8f3,Find 12 Monkeys community and view the latest posts mentioning James Cole.,https://www.reddit.com/,6,medium,Social media
+26a0e5c21c145dd8448aa92f35bec5ea,"Browse optometrists who offer telehealth services in Columbus, OH.",https://www.healthgrades.com/,3,easy,Health
+070c907d34a4ce71dfdbea38f9c5d4d8,Find a dentist who specializes in pediatric dentistry and is located near zip code 90210 (within 5-mile distance).,https://www.healthgrades.com/,7,medium,Health
+43a1ca251f11c6b0bdd0379766cc49e6,Find a neurosurgeon who is over 50 years old and has an appointment available tomorrow.,https://www.healthgrades.com/,8,medium,Health
+b3f8bd9198d9d157e0848109563c4b23,"Find a permanent job in Logistics within 20 miles of New York, zip 11005, in the middle-income range for a high school diploma holder.",https://ohiomeansjobs.ohio.gov/,15,hard,Government
+20a460a8fe1971b84411c5b1e6ac4186,Show theatre events for Las Vegas and select one.,https://www.stubhub.com/,3,easy,Event
+db1ffb5e60578597d1c3aa3c389ac7b1,Search for smart TVs with a screen size of 55 to 65 inches and filter the results to show only those that have an LED display.,https://www.google.com/shopping?udm=28,5,easy,General
+7be8cd8dba885cddd9af5320f49bc41b,Find roofing contractors within 5 miles of zip code 10002.,https://www.bbb.org/,9,medium,Government
+239a29bde438fe44fe17fe1390ef1634,Find me a gluten-free diet to lose weight for a pregnant woman.,https://www.healthline.com/,8,medium,Health
+9f1cba613830ca1c6a58f9498c06e679,"Find a premier real estate agent in St Augustine, FL.",https://www.redfin.com/,4,easy,Housing
+75146b7b67388b9244e0f21a1527c022,Find a male senior boxer near zip code 90028.,https://www.adoptapet.com/,10,medium,Pet
+59b7b990b4828bc305ab0d7ed6071b55,"Get owner-financing homesite land for sale in New Mexico, Luna County,  listed in the last 30 days, and contact the cheapest per acre land seller.",https://www.landwatch.com/,9,medium,Housing
+9c97bab9c2abfb90a426cbe9addae8d0,Check the details of order 12345 with email 12345@gmail.com.,https://www.macys.com/,4,easy,Department
+871e7771cecb989972f138ecc373107b,"Find the weather for Vancouver, British Columbia for the next seven days.",https://www.theweathernetwork.com/,3,easy,Weather
+b69eb4de621e9e265676daac44938f3f,Find an adult husky near zip code 10019.,https://www.adoptapet.com/,8,medium,Pet
+9bb63ad0e38d5691a618932a8b31c05a,Look for reviews of a Nest Hello Video Doorbell and filter by 1-star ratings.,https://www.google.com/shopping?udm=28,5,easy,General
+8ae510355d978424f490798f900bfa2c,"Show me the shared rooms in any university in Melbourne that has a private bathroom wifi, and gas included in the bills.",https://www.student.com/,9,medium,Housing
+4c186c6ed888d0c8d4cf4adb39443080,Find a medium Devin Booker jersey and add it to the shopping cart.,https://www.nba.com/,6,medium,Sports
+2fc51dd3febd447f0fdcdabca8d944ce,Locate a self-storage unit near zip code 60538 that can fit about a dorm room full of items and is climate-controlled.,https://www.extraspace.com/,9,medium,Housing
+eb323dc584156d0eb3a2b90bb8c4b791,Find the latest 2 bed and 1.5+ bath apartment listing for rent in New York.,https://www.redfin.com/,12,hard,Housing
+87f4c5128e36cdb9366a138a7b61bb00,View the speakers that are bluetooth and wireless and filter the results to only show models that are on sale and cost less than $50.,https://www.bestbuy.com/,6,medium,Department
+354b4ddf048815f8fd4163d0d7e1aaa3,Browse marketing jobs and filter by Bachelor's Degree education level.,https://ohiomeansjobs.ohio.gov/,6,medium,Government
+e4e097222d13a2560db6f6892612dab6,Search for a young spayed male dog cared for by a private owner within 50 miles of zip 33109.,https://www.adoptapet.com/,6,medium,Pet
+f389398d2eeb29e5571e00439c57eb76,Find the latest climate news.,https://www.theweathernetwork.com/,3,easy,Weather
+8ea6c3a2ea3f59150619935261a76d19,Find a staffed FedEx location near zip code 10019 to return a package.,https://www.fedex.com/en-us/home.html,7,medium,Shipping
+c1d6ea6f2196d25782cc3646ff3090db,Create a list of drip coffee makers that are on sale and within $25-60 and have a black finish.,https://www.google.com/shopping?udm=28,7,medium,General
+2dd41b1d0e8f389d0683f4a4627abfe6,"Show houses for sale in Maryland with a maximum price of $60,000.",https://www.landwatch.com/,7,medium,Housing
+f2097f92a10d42a842c14179f422311e,Add a $50 Uber gift card to the cart.,https://www.bestbuy.com/,4,easy,Department
+85b284c18d7e78c9b5a9e074e7aa3b98,View the cheapest apartment available for students at the University of Leeds with bills that include WIFI and cleaning services.,https://www.student.com/,10,medium,Housing
+853afd530c72f4b00ffc32ae854efaf8,Show me the wind flow map for Belo Horizonte.,https://www.accuweather.com/,5,easy,Weather
+c09721cc937d4dcfb391a0bc2c574b28,Find the next available date for Albion Basin.,https://www.recreation.gov/,3,easy,Government
+4c572a627b53b0f9a734ab37f21819b8,Browse apartments with at least 2 bedrooms and 2 bathrooms and a max price of $4000 per month.,https://craigslist.org/,5,easy,Housing
+301f267f421b93045874726183e8f722,Find healthy savory vegan snack recipes which can be cooked within 5 minutes and contain a high level of protein.,https://www.healthline.com/,10,medium,Health
+4f903626f632586fe4728d6664947bab,Find press releases by the antitrust division in 2022.,https://www.justice.gov/,4,easy,Government
+3ec0f6138d37fadcb989347a6088ec45,Open the page to learn more about how to get accredited.,https://www.bbb.org/,2,easy,Government
+2207bb4f21786690cfed20b37253fb8b,"Check the current wind speed in Calgary, Alberta.",https://www.theweathernetwork.com/,2,easy,Weather
+9c04b71bb8db6cf8e743b2290cbc8797,Find a UPS drop-off point near Miami Florida.,https://www.ups.com/,6,medium,Shipping
+4e0f5561a76478da87995dee00b09572,Show me the monthly weather forecast for Florida City.,https://www.accuweather.com/,3,easy,Weather
+7562d9b4e4829a44245aafce2e1f62db,Find the nearest location to zip code 54620 that offers size 4 P.O. Boxes.,https://www.usps.com/,8,medium,Shipping
+bd1e3770b7181f6fce9c35e18caa9785,Browse service listings for a solar panel installer and hide duplicates.,https://craigslist.org/,3,easy,Housing
+330cd04c773ac498f51afa4665461ec8,"Browse couches for sale, sort by cheapest, and search in titles only.",https://craigslist.org/,6,medium,Housing
+ec78d3a635e417bc2a80d03ca93d7165,"What are the benefits and financial support a single person living in England, over the state pension age, unemployed, with no health conditions, or caring for someone with one, can get?",https://www.gov.uk/,16,hard,Government
+a0a18ca6a3529f3e97c771aadd42d3a0,"Add a men's T-shirt that is in large size with a stripe pattern, short sleeve, and under the Best Sellers group to the cart.",https://www.macys.com/,7,medium,Department
+82eb3bfedd78456a0230b389f4e7a938,Open the XRP yearly chart.,https://coinmarketcap.com/,4,easy,Finance
+e7f6cca9a8875f98fee3b711ead3a444,Find the comments made by the user Separate-Camp7202.,https://www.reddit.com/,5,easy,Social media
+75a1b5dcd2c28508a971d98d51fe5767,Open the reviews of a recipe with beef sirloin.,https://www.allrecipes.com/,5,easy,Cooking
+c03ee2be3d73556ab789c0ad1cbd3451,Find a dog groomer for nail trimming within 100 miles of zip code 10005 and check the detailed service prices of the first one.,https://www.akc.org/,11,hard,Pet
+05483c50cc9b04c8ac44c574758fb2bd,Look for the best rated BBB accredited charity near 12023.,https://www.bbb.org/,8,medium,Government
+a172a5d9ffaf5ef02bd550ec4fe24e6d,Browse the natural products database.,https://www.drugs.com/,2,easy,Health
+7e1047f4803237f319c004f7a7f6bccb,"Discover the trade-in value of my Intel 7th generation i3 Windows 10, HP laptop in fair condition,  which has 8 GB memory and can be powered on, proceed for the in-store trade-in.",https://www.bestbuy.com/,13,hard,Department
+f2be37a9a60fbc25b6b11cf622d17352,Find obedience trials in state of New York during the month of May.,https://www.akc.org/,14,hard,Pet
+e24662008c3be5d56f986f232fcec447,Find the stock price for WWE over the last month.,https://www.google.com/finance/,4,easy,Finance
+0170ca95038b05fa58d463fe627ac605,Check if a visa is required to work in the UK for longer than 6 months in Healthcare as an American citizen.,https://www.gov.uk/,12,hard,Government
+b3a7da968de13bbdcaed12ffe4993df6,"Compare the breeds Afghan Hound, Akita and Azawakh.",https://www.akc.org/,9,medium,Pet
+515f2e5811cfdd5e0e669e40f17886d8,Search for a new internal M2 Samsung SSD drive between $25 and $200.,https://www.bestbuy.com/,8,medium,Department
+4d3157aab34b54e5f0c4b965dfe930f3,Show me community posts about pregnancy fever from the past 30 days.,https://www.babycenter.com/,8,medium,Health
+e4e19e04286f644d747d8c5a79d17fac,Find the Drug Interaction Report for Viagra and alcohol.,https://www.drugs.com/,6,medium,Health
+cad62d2be0c53f08a416457486b3db23,Search for adoptable dogs near 21122 zip code.,https://www.adoptapet.com/,5,easy,Pet
+9ef1a8972f375db59c0e6329e11b7939,"Find Farms land in Wilkes County, NC with the lowest price.",https://www.landwatch.com/,5,easy,Housing
+a11ecdff735b51372d536c866011af6f,Explore courses related to Psychology.,https://www.coursera.org/,4,easy,Education
+7fff82864f21ddeccf4104a220892824,"Find the lowest 27""-32"" Samsung or LG computer monitors nearby which have 4k, IPS display.",https://www.google.com/shopping?udm=28,10,medium,General
+50d91eabde542906937ab4c5b6f8f23a,Calculate Pregnancy Weight Gain for a 5-week pregnancy with a 169lb weight before pregnancy and a 175lb after pregnancy with a 5.6ft height.,https://www.babycenter.com/,9,medium,Health
+dcd26e662a616d373ddd339747c6ce5b,"Take a weight management quiz to find a motivating article for a non-exercising, mostly eating out and can't control portions and cravings, and who has a strong support system, enjoys traveling, loves family time and cooking.",https://www.healthline.com/,22,hard,Health
+eb2db4b769c145dbe6ba4f74f3e0de98,Find an energetic hairless dog with medium barking.,https://www.akc.org/,10,medium,Pet
+c0fa2c0e622971955cabf5bcf7b777e8,"Search for rentals in Corning, CA with a maximum price of $1500.",https://www.apartments.com/,6,medium,Housing
+ce616721ce9aeda69890fbccb29677a6,Calculate the price to ship a large flat-rate box from 77449 to 77084 at the first available date and time.,https://www.usps.com/,8,medium,Shipping
+9d09bc948462db032bac98968b11b008,Find NHL events occurring in Boston.,https://www.stubhub.com/,7,medium,Event
+29526b17a32485742b5ab63507e99417,Browse Humira dosage information.,https://www.drugs.com/,3,easy,Health
+d7c955b47af68e01766fa86d0bee08a7,"Add Elevate at Chicago, IL, to favorites and show a virtual tour.",https://www.apartments.com/,4,easy,Housing
+9d090a15c214eb070d9caa8a034d03c1,Find the lowest-priced Student housing near Liverpool International College which has been priced between 100 to 300 pounds and has a private bathroom.,https://www.student.com/,14,hard,Housing
+5916018d1cad999881018cac1216a692,Find a personal trainer service at 10040 for a 25-year-old client aiming to build muscle.,https://www.thumbtack.com/,6,medium,Home service
+0059adc6b12a3822305deb68929b2de8,"Find support services jobs in Bentonville, in the state of Arkansas.",https://careers.walmart.com/,8,medium,Job
+07bdc595306729a028ba06cc7451a80a,Select a high speed train ticket with a departure time before 23:00  from Shanghai to Beijing.,https://us.trip.com/,7,medium,Other
+64b76158720a69e4a5c31a55d54928bf,Compare two pescatarian diets for eating healthier.,https://www.healthline.com/,10,medium,Health
+e3ab665e01e7632ce33ac1aeca14aff6,Find the next available dates for Alley Creek Camp.,https://www.recreation.gov/,3,easy,Government
+2d5a7f95f951a26838289dfd629ae850,Find a list of houses for sale in zip code 85747 with a private pool.,https://www.redfin.com/,8,medium,Housing
+26810ed9c123a62992e3eed31db3c5ee,Show daily weather for New York City.,https://www.accuweather.com/,4,easy,Weather
+c181f903ec1107b850032c17cad88393,Help me identify a pink round pill with 150 written on it.,https://www.webmd.com/,7,medium,Health
+ef289e34a2f59a707cb07e2a6229ff03,Compare the Acura CL 2003 with the ILX 2022.,https://www.cars.com/,9,medium,Auto
+84f806c7fc15576673915f195efa72df,Find a nationwide nearest animal shelter for birds around zip 10012.,https://www.adoptapet.com/,8,medium,Pet
+be9e7dca1222714571ef3d7d59d2a41c,"Find out the cold and flu forecast and today's air quality in Champaign, IL.",https://weather.com/,6,medium,Weather
+11abb668c751dd56bb41f296a8bb3a13,Find a store near zip 30010 that provides authorized Apple services for imacs and make this one my store.,https://www.bestbuy.com/,10,medium,Department
+207e933d1bba815bcb58664b5d82c085,"Find Ohio City apartments with parking, a fitness center, and an elevator.",https://www.apartments.com/,6,medium,Housing
+29b7372d5a3884a2ba831af2d117af3c,Browse the first top news of Microsoft stock on Google Finance.,https://www.google.com/finance/,3,easy,Finance
+5c00e9561eae94789443f405525a5869,Find the recommended dosage for Vivitrol.,https://www.healthline.com/,5,easy,Health
+2532fd402d3c741b79894e6ff2269f53,find electricians near 10203.,https://www.thumbtack.com/,3,easy,Home service
+9829f3087ab1f9c8eba6b6dd2b831d25,Play the latest video from NBA TV.,https://www.nba.com/,3,easy,Sports
+783ce6a3499fa7cf25bc12f8f0ecbbbb,Find Florida internship programs in the Mayo Clinic College of Medicine and Science.,https://www.mayoclinic.org/,5,easy,Health
+6db4a0e346976f2729ba9afcd3208941,Look up tracking information for shipment #3023858502.,https://www.fedex.com/en-us/home.html,2,easy,Shipping
+1fc28d91d25ccd1c6ba268101326a654,Find the 5-day price chart for Bitcoin.,https://www.google.com/finance/,3,easy,Finance
+255bf27c43fd3f9254d6b81a5f36d3a9,Look for the largest hunting land for auction in Kansas high plain region with mineral rights posted in the last seven days.,https://www.landwatch.com/,9,medium,Housing
+a8b9edd598561d2de901864d5f40fe67,Calculate the shipping cost for 4 pound package from Texas to New York.,https://www.fedex.com/en-us/home.html,9,medium,Shipping
+a6f0434ce6aff5f9b03681241b03ad82,"Find the closing stock price for Tesla on March 17, 2023.",https://finance.yahoo.com/,3,easy,Finance
+415bf9da6f3db3a735ecbba3b0c76c15,Find the nearest vet within 50 miles of zip 75228.,https://www.akc.org/,9,medium,Pet
+8103786e0e5976ebf961bd062d5f39cd,Find possible causes for the symptoms of chest pain which is sharp which is accompanied by anxiety.,https://www.mayoclinic.org/,9,medium,Health
+92160852a6bbbc165cee4e14ab0b1d59,Find the shipping cost of a Common medium-sized box in flat-rate shipping and compare it with other parcel services.,https://www.ups.com/,5,easy,Shipping
+502e864440283214e0180645015f568b,"Check permit availability for a group of 4 in Brooks Camp, Katmai National Park on May 22.",https://www.recreation.gov/,8,medium,Government
+7680a920359cb1a508fbddb001b98167,"See the prediction about the girl child's height, whose current height at seven years is 4 feet and whose weight is 55 lbs, her mother is 5 feet 2, and her father is 5 feet 8.",https://www.babycenter.com/,11,hard,Health
+07ec4a12cba8090e2dc524d558ac7675,Check drug interaction for melatonin and Folate Forte.,https://www.drugs.com/,6,medium,Health
+987bad7c6d4726d64232a8a1c3386888,Find the seller info and seller's notes about the used car model 2011 BMW 135 with a max price of $30000.,https://www.cars.com/,11,hard,Auto
+15be05973fba714e490cd9c884e4f072,Find the procedure to get the license for Athletic Trainer.,https://ohio.gov/,6,medium,Government
+3adeea7627f4343069f38adae40f73d0,"Within 25 Miles of 96817, find a nursing home that accepts medicare.",https://health.usnews.com/,7,medium,Health
+c94551d2b18f9ad0ab31b0bd98ca42e3,"Find cats available for adoption within 10 miles of zip code 94587, Young or adult-age cats, sorted by Oldest Addition.",https://www.petfinder.com/,10,medium,Pet
+4e801ba102dfaf22c7cf7a126b107609,Find Linux platform software developers in 10080 who master the Python language and Java language with web interface project type.,https://www.thumbtack.com/,8,medium,Home service
+39c388cdc468688c8139cc2bb5157c13,"Calculate the estimated car loan payment amount for an average credit-rated person for a 15,000-dollar car with a down payment of 2000 dollars and loan tenure of 48 months in zip 65215 and shop for the lowest-priced car.",https://www.cars.com/,9,medium,Auto
+c8d7f2aa7eb5dd074c48c9f76f8659ad,Show Teen Driver Safety program information.,https://www.dmv.virginia.gov/,2,easy,Government
+fd787623166785d84093565bf945fd24,Check the interaction between Novolin N and Novolin R.,https://www.drugs.com/,6,medium,Health
+c3307a70bb12ebf56cc9ec926b368f15,Find the interactions between Eulexin and hepatic dysfunction.,https://www.drugs.com/,5,easy,Health
+9586827ad04ee2362f4f0076bf0f0468,Find the side effects of taking Montelukast.,https://www.drugs.com/,6,medium,Health
+34992feb69eb8e788faa06868b365c49,Submit a request for vehicle registration renewal with title number X123456 and last 4 digits of VIN is 1234.,https://www.dmv.virginia.gov/,5,easy,Government
+47b93b9e649eadeb8d96a6e3df715c2d,Show me Diagnoses & Treatment for Female infertility.,https://www.mayoclinic.org/,4,easy,Health
+3443e9c3151fef19a3c3a45eb2c13640,Search for the ovulation calculator and enter Mar 1 as the first date of the period and calculate the date of ovulation and pregnancy test day.,https://www.webmd.com/,12,hard,Health
+6b5be1764692d1dc8f17dc4375b2daa8,Show me historical data for EUR/USD.,https://finance.yahoo.com/,4,easy,Finance
+16200f51d63f0a47a58fa17acd49e368,Find a recipe that includes eggplant and mushrooms.,https://cookpad.com/,3,easy,Cooking
+c2153fc053112e89c2f103869c4d6890,Find a house cleaning service in 10001 on a weekly basis.,https://www.thumbtack.com/,5,easy,Home service
+5e4e89c9b6fdaee7a41aca5601b82e04,Identify a pill with a pink color and oval shape with 894 5 number on it.,https://www.drugs.com/,8,medium,Health
+60cbbbd58eb9d28b053aef945f464228,Look up if the phone number 555555555 is a scam.,https://www.bbb.org/,6,medium,Government
+8f80e64e44e1fada018997b2fe869683,What are the top posts of all time on Reddit?,https://www.reddit.com/,3,easy,Social media
+65c4030f22fb6eb101acfee4825f1318,"Find a female MD Cardiologist in Jacksonville, Florida.",https://www.mayoclinic.org/,8,medium,Health
+6ca20f1da01edeb49a7a42c816d8c6fe,Find the Eligibility to get the child benefit and How it works and how to claim,https://www.gov.uk/,8,medium,Government
+2e4e21cf1449c6894b17d571c47b77ea,Find an English bulldog near zip code 90028 that was cared for by a private owner.,https://www.adoptapet.com/,8,medium,Pet
+1df24ec81137386d6476bcf343a79012,Search for NordicTrack with the lowest price.,https://www.bestbuy.com/,6,medium,Department
+4639a54f3ab549864fd8d60b7398b1e1,Find a white female kitten within 35 miles of zip 77494.,https://www.adoptapet.com/,10,medium,Pet
+9af05e392cf3f5a8ff17aa764ba5bda6,"Get a quote from C and above-rated solar energy equipment company within 10 miles of Miami, Florida.",https://www.bbb.org/,16,hard,Government
+627f7a18d85f29a687234f1ade4585c2,Find the current league leader in total blocked shots.,https://www.nba.com/,5,easy,Sports
+0b838cd54f826c59c71f600c56b89a11,Find all the locations for the second-best-rated used car dealer less than 5 miles from New York.,https://www.bbb.org/,11,hard,Government
+5dec0e6620849459f29e6465982c597e,Search for 33 to 49inch Qled gaming monitor with a 240hz refresh rate that is within $1000 to $2000.,https://www.bestbuy.com/,11,hard,Department
+52efbab520734ef9bf7c09ba0f62cdc8,Find the app for iOS.,https://www.recreation.gov/,2,easy,Government
+b1ce968a361e1088ce8d2ade6c2c9af0,Find young cats in Seattle and show off the newest additions.,https://www.petfinder.com/,6,medium,Pet
+23204728192da9f73197a613d9681c18,What are the Symptoms and causes of fever?,https://www.mayoclinic.org/,3,easy,Health
+a69d2934fe54fef165490a5a2d95bf38,Show me recipes for pancakes with wheat and without beetroot.,https://cookpad.com/,6,medium,Cooking
+e9f4dfc67e0e6aa37f05f7cc5aa7428c,Browse pediatricians near zip code 90028 who specialize in Internal Medicine and have a rating of at least 4 stars.,https://www.healthgrades.com/,9,medium,Health
+2218042362d8fae73756eb309848c2b2,"Compare Audi A7 with Audi A6, both made in 2023, and hide similarities.",https://www.cars.com/,9,medium,Auto
+ba2a469af584f16da93ce6a7430cf7e5,Search for a beginner’s course in computer science that includes advertisement skills.,https://www.coursera.org/,7,medium,Education
+26784156ae9859a0dd6c5920eb106f91,calculate and search rent for a $6000 monthly income with 30% rent budget near 90012 area.,https://www.apartments.com/,8,medium,Housing
+47e314cc452c540524ffb7cf520285a3,Find the park that offers the cheapest paddling permits.,https://www.recreation.gov/,6,medium,Government
+271b36efd4346721b5542488ff997042,Browse 8K Samsung TVs that are open box.,https://www.bestbuy.com/,4,easy,Department
+6b2cfae0ef25c73d1224b6ab74cb8b63,Find Devin Booker's highest-scoring points per game playoff run.,https://www.nba.com/,7,medium,Sports
+0a54069a0ef542e571d1fee7f39c93d5,Browse senior spayed/neutered dogs near zip code 90028.,https://www.adoptapet.com/,6,medium,Pet
+4e3f6a538cc1f7321cfc50260db9545d,Look up the current temperature for zip code 10019.,https://www.theweathernetwork.com/,2,easy,Weather
+f00e7accfb4a5e09680bdb326e6274ad,Check the hourly forecast for Boston.,https://www.accuweather.com/,3,easy,Weather
+6174e5ddd40cfbdc33ee1502f40bac39,Find a day-use park that offers horseback riding near Nashville.,https://www.recreation.gov/,6,medium,Government
+547f5729c59d5d12a457a3ebb74c31c6,Search for 3 bedroom condos with 2 bathrooms within $1500- $2500 range in NYC.,https://www.apartments.com/,14,hard,Housing
+0b2623e9fa5cea997f76490bcbc5220f,"Find a list of shorthaired dogs available for adoption within 100 miles of zip code 94587 that are good with kids and cats, and have been on Petfinder for over 30 days.",https://www.petfinder.com/,13,hard,Pet
+3ae28b3c440efe87dc700480b78ac608,Find the closest 5-star rated dentist to zip code 98011.,https://www.healthgrades.com/,9,medium,Health
+0632e496d37badee0350dad358f047c5,Browse recipes for gluten-free chocolate chip cookies that can be made without nuts.,https://cookpad.com/,4,easy,Cooking
+aafd1fddea1558466ac6133934d35156,"Find a Single-Family House for Rent in Houston, TX with 1 bed.",https://www.apartments.com/,8,medium,Housing
+246d654fab7c31d9651007e39e75f74f,Open the most helpful 5-star reviews of Alpine Ridge.,https://www.recreation.gov/,5,easy,Government
+690d7b4a285fdb1e9dabf973bf46ae4d,"Browse iPhone X for sale that is in good condition, has a max price of 400, and searches in titles only.",https://craigslist.org/,8,medium,Housing
+c43a7dccf5c44f7b45a821e712dd1970,"Take a newsletter subscription with my email id (buckeye.foobar@gmail.com) for Allergies and asthma, Anxiety and depression, nutrition, diabetes, breast cancer, and migraine with email id.",https://www.healthline.com/,8,medium,Health
+d5c34bf39eb6096ae5d439325cde4d32,Find a DMV center in Richmond.,https://www.dmv.virginia.gov/,5,easy,Government
+180ed2ec377ef3a4af9035a21522091a,Find the way to give a gift to UM-Dearborn.,https://umich.edu/,5,easy,Education
+c521933dad9c0ef9f1dfa2f38b8e4405,"See the monthly forecast for Atlanta, GA.",https://www.accuweather.com/,3,easy,Weather
+9b5dfe54a1c14c5c6336bae7374c3bb5,"Find a UPS Access Point near SPRING, TX and services provided by them.",https://www.ups.com/,8,medium,Shipping
+c073ac1bcf40f84c599affc97edbc396,Search for the cheapest apartment in Detroit for a student.,https://www.apartments.com/,9,medium,Housing
+73d08420706ae205a9c5be28b6d4e80f,Show me the rules and cancellation for Alley Spring.,https://www.recreation.gov/,3,easy,Government
+0a0fa834ce41b5297c6474293383759d,What are the onboard activities of the highest-rated Regent Seven Seas Cruise ship based on Costco member reviews?,https://www.costco.com/,8,medium,Department
+a13e4231a3d6a7000c622c56448d97ba,"Find an Airbnb in Cleveland for three nights. The check-in date is the day after tomorrow. We have 2 adults, 2 kids, and 1 pet. The budget is $100 to $300 per night. Essential amenities include free parking, a washer, and a gym.",https://www.airbnb.com/,19,hard,Home service
+bb518416a786fdb9b9bbf0c78515595e,Browse the class schedule of graduate-level computer science courses.,https://www.osu.edu/,4,easy,Education
+b99c02965196d51e80ac7539e33f335b,Please find graduate-level computer science courses scheduled on Tuesdays starting time from 2:00 to 6:00 PM in the Fall 2023 semester.,https://www.berkeley.edu/,9,medium,Education
+27fa3ac20745d3d35e89fae157f63069,Browse the class schedule of graduate-level chemistry courses on Monday afternoons in the winter of 2023.,https://www.stanford.edu/,11,hard,Education
+b4aa7315e31dfcdc52baf7771be260c9,Find the HGX H100 driver for Ubuntu 22.04 on AMD64 CPU.,https://www.nvidia.com/,11,hard,Digital
+442a450e696a96085257db6297891a4d,"Using a calculator to determine how much I can have in my 401(k) account at retirement, if I work from age 22 to 65, with an annual rate of return of 3%, annual employee contributions of $8,000, and annual employer contributions of $8,000.",https://www.chase.com/,11,hard,Finance
+9ed3827266b3b804f485859c3d00401e,"If I'm 30, plan to retire at 65, and can save $300/month, with a 3% annual return, 13% current tax rate, and 24% retirement tax rate, show the comparison chart between Traditional and Roth IRA.",https://www.chase.com/,12,hard,Finance
+c801d1c951f59297f526bab84fa86c6e,Browse the latest negative reviews from players with over 100 hours of playtime for the game that won the 2023 VR Game of the Year Award.,https://store.steampowered.com/,11,hard,Game
+7c09c2c7c87cf6bb1138701eb54284ea,Find the comments for the most popular news in the past month under the Quantum Physics topic.,https://phys.org/,8,medium,Education
+afcebfed28bea091d58f49ea6cb8194b,Find the most reviewed gluten-free multivitamins from CVS Health Brand under $15.,https://www.cvs.com/,12,hard,Health
+64345c365f544375357c7b67917f08a0,"Look for the newest refrigerator that is 34-36 inches wide, priced between $1,000 and $2,000, and has a customer review rating of 4 stars or higher.",https://www.costco.com/,8,medium,Department
+ab6ee3b83aab6cd283320f5e01003cff,Find the tech specs of the MacBook Pro 16-inch introduced in November 2023.,https://www.apple.com/,7,medium,Digital
+33bd2cdcea4fcc42a09a8a1e4e5841c6,"Add a 5-piece Tenders Combo to my bag with Sweet Corn as the side, Sweet Tea as the drink, and both Honey BBQ and Honey Mustard sauces. Select the store closest to Zip code 10001 for pick-up tomorrow at 12:00 PM.",https://www.kfc.com/,23,hard,Restaurant
+47186fac8e7c7277af01144644eb4e0b,"What is the ownership cost of the first car in the list ""top buys 2025""?",https://www.parkers.co.uk/,3,easy,Auto
+fa9adb815b85d259f943d81874a052e5,Browse a user homepage that reposted the top song from the Top 50 Rock chart.,https://soundcloud.com/,6,medium,Music
+b922508886ded315c9835457a6eb43ea,Browse tenured/tenure-track faculty positions in Computer Sciences & Technology in California.,https://jobs.chronicle.com,6,medium,Job
+5d542a7ec1fa142ba73cc87d970caf39,Find the most cited publication at the 2022 CVPR main conference.,https://dblp.org/,6,medium,Education
+864244b6969e0f8733b0eb1ca06cd51f,Find the race time for who wins the first place in the last race of the 2023 Formula 1 (F1).,https://www.espn.com/,6,medium,Sports
+01abae9608f2d8752a83e08f136f720c,Show me the code for the company that is the top mover in the Cboe Europe Technology Sector Index (BEPTEC) as of the latest market close.,https://www.cboe.com/,6,medium,Finance
+da8f3823a827c7d3a492f383808e7912,Find and open the earliest press release.,https://www.instructure.com/,6,medium,Education
+8689af4d33ce00bf2cdd8987d3bbfd86,Add the cheapest certified refurbished iPad Air with 256GB of storage in any shade of blue to my bag.,https://www.apple.com/,8,medium,Digital
+78f397336b6fd1cbba0127db7a8cd502,Browse the upcoming SuperBike events taking place in Italy.,https://www.redbull.com/,8,medium,Event
+3dca7cbe7d086619d837ff9f5312cebc,"Can you show me products under the category path 'Automotive' -> 'Car Jack', with an additional filter for the color pink?",https://us.shein.com/,4,easy,Fashion
+b962927dfe03bf2274a54381127ed433,Find the best-selling vinyl record by an artist from New York City in the classical music genre.,https://bandcamp.com/,8,medium,Music
+78baf9dbe7c3532f7d7ef4cc22a7f065,Find the most popular digital trends report in the Finance & Insurance industry within the region of China.,https://www.statista.com/,8,medium,Education
+c7c07ec10c668625a21ba64165d719bb,Find the total monthly price for four prepaid unlimited lines without autopay discounts.,https://www.verizon.com/,8,medium,Home service
+512fd4deab099b8dc0dcfc0ec48a3c63,Identify the open issue with the most comments in the first trending open-source repository this week.,https://github.com/,8,medium,Education
+d9d8b7d84a3f8d057e368254fe8d65e2,Find the first commit submitted by NielsRogge to the official repository of the SAM2 model.,https://github.com/,8,medium,Education
+157f4a79d55e8fa3fd55ba772ba40fbc,Find the most popular blue Lilo & Stitch toys.,https://www.disney.com/,9,medium,Speciality
+62c8d970b3d13891f355911e5a8f4030,"Find the top game listed in the Steam Deck's top-played list over the past year. Then, browse reviews for that game from players who have played over 100 hours and primarily use a Steam Deck.",https://store.steampowered.com/,9,medium,Game
+11857213ca01510f12813740afd59918,"Add the most top-selling Adidas men's basketball shoe in red, size 10 to my cart.",https://www.adidas.com/,10,medium,Fashion
+47bfe8a7e0e4e7efc837287b407fbe90,Compare the first and second most popular smartphones manufactured by Xiaomi and show the comparison chart.,https://versus.com/,10,medium,Digital
+bb314cb80f0f8489135cbf59074d11e2,Open the page for the first Best Paper Award video recording of talks from ICLR 2016.,https://iclr.cc/,4,easy,Education
+1aeca99e6a60b0e3aefb3ef212bdce79,"Find full-time legal occupation jobs in San Diego County with a minimum salary of $4,000+ per month.",https://www.ca.gov/,10,medium,Government
+d730f4ff450da1bd60a836163736ef6a,"Find the best-selling GORE-TEX men's hiking shoe priced between $100.00 and $199.99 with a rating of 4 stars or higher, and show its most helpful comment.",https://www.rei.com/,10,medium,Speciality
+fe33894188d20d7469f37a9fd855e7ff,"Find me Python 3.9 packages on PyPI that are designed for the Web Environment, licensed under MIT, have a stable production status, and are intended for developers.",https://pypi.org/,11,hard,Education
+71f8de1834599fba443f40dbbfab8edd,"Search for papers related to reinforcement learning under the topics of computer science and mathematics on arxiv, with recent submission dates between September 2024 and January 2025.",https://arxiv.org/,11,hard,Education
+c8c1ff115879b3afd14280beb1559b13,Find the latest Doraemon video in MP4 format that is over 20 minutes long and has a medium file size.,https://www.4shared.com/,12,hard,Social media
+d4fb78b7e74508cd3b33f01cf9200997,Show the figure comparing Occupational Fatalities Trends between Ohio and New York.,https://www.americashealthrankings.org/,12,hard,Education
+0e42c3a73f2aece1f854e0ba55b7c8b0,"Find a gas station in Manhattan, NY with a rating above 4.0, and sort the user reviews by the lowest rating.",https://www.google.com/maps/,7,medium,General
+96afb3c51146b0c2a9c55f039a5ea6d6,"Find the most frequent word that rhymes with ""thought"" and has three syllables.",https://www.merriam-webster.com/,5,easy,Education
+59912927c1fddee6ded8a49986896bc2,"Look for the most useful reviews of the highest-rated anti-reflective TVs with screen sizes from 55"" to 64"" and prices ranging from $300 to $1500.",https://www.samsung.com/,14,hard,Digital
+e43cbc8a0bf9e999884928d11006f894,"Browse the list of things to do in Miami that have a rating of 9+ (wonderful), last between 1 to 4 hours per session, cost under $100 per person, and are available for booking between next Monday and next Friday.",https://www.expedia.com/,15,hard,General
+1b867afecf072cb877ebfa4069263746,Display the figure comparing unemployment trends among women in Illinois and Michigan.,https://www.americashealthrankings.org/,15,hard,Education
+c3a333968fc3c43d7f2688f425a0d633,"Find the cheapest certified pre-owned Porsche 911 with a model year of 2019 or newer, within a 200-mile radius of ZIP code 97007.",https://www.porsche.com/,15,hard,Auto
+bb5d90e6f2fbc0ae146f7c1998c2b4a1,Find the most viewed TED talk on the topic of robots that lasts between 12 and 18 minutes.,https://www.ted.com/,15,hard,Movie
+c577a14301a725e09ccd269a3e0b271e,Return the page for the highest-rated red wine from Oregon under $40 that pairs well with either mushrooms or veal.,https://www.vivino.com/,15,hard,Speciality
+c6c9dc6079677cef594cec2fa6b16602,"Add the cheapest black sofa with at least three seats, a leather finish, and at least four stars to my cart.",https://www.ikea.com/,16,hard,Department
+c39d6c245f8243993e707d54d2f4acec,Browse the final skin in the list for the champion Ahri.,https://www.leagueoflegends.com/,18,hard,Game
+b2f4fde2fce122a93c7b578086cb0585,"Find the cheapest hotel + flight + car package from New York to San Francisco, departing tomorrow and returning on the fourth day from departure, for two adults and a six-year-old child. The package should be one room with free breakfast and spa access.",https://www.booking.com/,19,hard,Hotel
+d02d236836924919f35f2438d9ed2374,Browse the top 250 movies and find one movie that is available on AMC+.,https://www.imdb.com/,22,hard,Movie
+3621b099326c7aebd2e2dac6be3b52d1,Open the profile page of the leader of the Nvidia Learning and Perception Lab.,https://www.nvidia.com/,5,easy,Digital
+f27b393bbd2082f92b566270c4b74fe6,"Find a large van for sale from the year 2024 or newer with up to 10,000 miles.",https://www.parkers.co.uk/,7,medium,Auto
+ba01ea557b73f864c35ebba0dd6f3cb2,"Find the top-rated hotel in Manhattan, NY, suitable for 4 guests, and identify the fastest public transportation option from the hotel to LGA airport.",https://www.google.com/maps/,14,hard,General
+662ae0f2d3ac851dbcdd245f908277e3,What is the second stop among the best stops along the road trip from Yellowstone National Park to Las Vegas?,https://wanderlog.com/,5,easy,Other
+461ab9b0c7b20ac5f912704480979c65,Find the NYSE Rule 605 Market Center Files data for July 2024.,https://www.nyse.com/,5,easy,Finance
+a96fca87a17d792644e736d1d10d3cbe,"View the pricing plan for 'Business'. Specifically, we have 100 users. We need a 1PB storage quota and a 50 TB transfer quota.",https://mega.io/,5,easy,Digital
+2c8ef01a92c71ba9ef2e59bb17eea2b3,"If there are any discounts on the Apple Mac Studio, add the one with the largest absolute discount to my cart; otherwise, add the cheapest one.",https://www.costco.com/,6,medium,Department
+3084bc225219fcb73dc1cb0f97276c1c,"Get quotes for a package weighing 10 lbs with dimensions of 2 inches in length, width, and height, being shipped from Long Beach, 90802 to Portland, 97201.",https://www.ups.com/,7,medium,Shipping
+949dc965a6c23a95663b3bc2ca2c3a8a,Find UA or AA flights from London to New York that arrive between 8:00 PM and 11:00 PM on FlightAware.,https://www.flightaware.com/,13,hard,Airlines
+636b07af4dd97c1793733db1fd1b90b8,"Filter handbags to evening bags that are blue, and polyester and cost less than $100.",https://www.macys.com/,9,medium,Department
+38203be65401943aea2179c4c680059a,Check the status of bus S92 for any disruptions on new.mta.info.,https://new.mta.info/,6,medium,Ground
+cf757a775fa1224acfc7998489e199a8,Find a flight from Dublin to anywhere under $100 tomorrow on Ryanair.,https://www.ryanair.com/,13,hard,Airlines
+d8e2a81fa621ce4737e5ea85671b630e,Search for regular weekday jobs around 14810 that I can start within two weeks or three.,https://hiring.amazon.com/,13,hard,Job
+63d6866fc000fcb1f153e07604bd1395,What are the Nearby Attractions from the most popular attraction in Hong Kong?,https://us.trip.com/,8,medium,Other
+199be0b54a436daee74247971fc684ee,"Add a Macy's Happy Birthday E-Gift Card worth $50 from Shak to my cart, with the birthday wish message ""Happy birthday, wish you many more years to come"", addressed to christene (christenson@gmail.com).",https://www.macys.com/,11,hard,Department
+c00437fd76a7a83b57f3dc4e5dbc41f8,"Check the most recent full-time medical health and safety jobs, requiring 1-3 years of industry experience available in the US.",https://www.amazon.jobs/,8,medium,Job
+fc53ddd3421411a41c1020a3fdc84ec4,"I want to purchase an open-box Samsung Galaxy S25 Plus in excellent condition and trade in a gray Galaxy S20 5G (Verizon), with a perfect screen, in good condition. How much would it cost?",https://www.bestbuy.com/,17,hard,Department
+9d46ccb915eff39ee1ae1e7328f5f20d,"Get a quote for the fastest shipping available for 5 lbs with dimensions of 4 inches in length, width, and height from New York, NY 10001, USA to Truckee, California 96162, USA.",https://www.ups.com/,8,medium,Shipping
+d1970c16271496cbbe166ecbecc0a1d8,I'm 25 and located in Texas. Shop for 2020 made dry red wine made in United States priced between 15-20 dollars and add 5 bottles to the cart.,https://macyswineshop.com/,13,hard,Speciality
+7211af65d266402f99499053924262e9,View the most recent job posting for a full-time pharmacy position in the US.,https://www.amazon.jobs/,8,medium,Job
+4464a8421f8bc8786524a499258dfad3,Check the specifications of the best-selling HP FHD laptop with 16 GB RAM and core i7 running on Windows 11.,https://www.bestbuy.com/,12,hard,Department
+f707d765bca668830745d20807d7bee6,"Show me the list of young female English Spot rabbits available for adoption in Chicago, IL, within 50 miles.",https://www.petfinder.com/,14,hard,Pet
+d392e154c1c6ffbb26e2331c3afafc67,Add a $100 Best Buy gift card for a birthday to my cart.,https://www.bestbuy.com/,6,medium,Department
+a5c87cc1c94a090c9a8dc2c8b6a125d0,"Find the SO2 air quality over the past hour for Maine North, County Cork, Ireland.",https://www.accuweather.com/,15,hard,Weather
+367d843c640637745e8fafa741cca13b,"Find a condo for rent in Houston, TX, with a monthly rent of no more than 30% of an income of $8000. The condo should have a minimum area of 600 square feet, and the move-in date is the 1st of next month.",https://www.apartments.com/,15,hard,Housing
+84ef883a37af638c3bcf7561f28ce80a,Find the cheapest used hatchback car listing in Madison which has black interiors with a heated seat option and premium sound system.,https://www.cars.com/,12,hard,Auto
+d9a8689393effeed75ea0866e44e1def,Find the address and phone of the Office of the Inspector General (OIG).,https://www.justice.gov/,8,medium,Government
+1bc154377120ec15b18dbabdba49c741,Book 4 tickets in the upper for any Kevin Hart show in New York in the next three months and view ticket prices with estimated fees.,https://www.stubhub.com/,12,hard,Event
+28e7574e7bd6d14f36d2988a5ef2bd23,"Get a part-time job within 5 miles of Moscow, Idaho in the accommodation and food services industry, as a chef, and show jobs for corporate only.",https://ohiomeansjobs.ohio.gov/,12,hard,Government
+1c3b747ae12ccee895745f82e3f2ef8a,Identify the ongoing competition that offers the highest prize and find the code that received the most votes in that competition.,https://www.kaggle.com/,11,hard,Education
+d1807551297ac60ecaaabbd2a2ed301a,Find the No.1 children's hospital in the California that specializes in Neonatology.,https://health.usnews.com/,8,medium,Health
+7abdceee212151f187ee1a1744c57606,Can you show me the page with the filing fee for a self-petitioned I-140 application?,https://www.uscis.gov/,6,medium,Government
+0e5536aaad9d3462b06cf725e6ed535a,Show me the page with average wait times for U.S. citizens arriving at Raleigh-Durham International Airport on 2025-03-12.,https://www.cbp.gov/,11,hard,Government
+bc2ce7f206045dd2d322e5695a947219,"Estimate the federal income tax I would owe on $158,500 of taxable income in ZIP code 97007, filing as single.",https://smartasset.com/,6,medium,Finance
+7e6993f2c5cd72c44809024f0bc85dc1,"Create a meme with a frog as the background and leave the only text with ""Enjoy your life"".",https://imgur.com/,8,medium,Social media
+a48e2f1ee8d87eaeea56fe5e730427e6,Pass the first trending chess puzzle.,https://www.chess.com/,7,medium,Game
+dd44c665cec1e9c929a4c5f074e7844a,"Find parking near the San Francisco Museum of Modern Art from June 18, 1:00 PM to 5:00 PM. I'm driving a Ford F-150 and need a garage that allows in-and-out privileges. If there are multiple options, show me the details of the one with the lowest price.",https://spothero.com/,17,hard,Other
+99daaed9a83c266341d28aa40067d376,Find the most popular board game on the 'The Hotness' list that has a rating above 7.5 and is suitable for 2 players.,https://boardgamegeek.com/,5,easy,Game
+7072d09436972a5d5fe7476e3e9f1559,Show me the comparison of the first two personal credit cards that do not charge foreign transaction fees.,https://www.americanexpress.com/,10,medium,Finance
+2c20d87a046fadcb6ff07ee877bfbf37,Open the form 8843 for tax year 2022.,https://www.irs.gov/,8,medium,Government
+753f372c189d3b306623cb0c65b50320,"Compare the U.S. ETP Odd Lot Rate (%) between Quartile 1 and Quartile 4, viewing quartiles by price, and display the chart with a logarithmic scale on the vertical axis.",https://www.sec.gov/,9,medium,Government
+733f1d8bf79d5bc2240c5357f928ffff,"Find the cheapest travel deal or discount to Thailand that lasts more than 10 days, departs in next month, and show the total price.",https://www.tourradar.com/,10,medium,General
+f05e87c5b92d9869e08806103c1c15a1,Find all startup companies from the 2022 and 2023 Y Combinator batches that are based in France and currently have job openings.,https://www.ycombinator.com/,12,hard,Finance
+3ef64f34eae59c9fac7ee9a4f18b4a0c,"Find and open an animal learning course on YouTube Kids for my 6-year-old without login in. As a parent born in 1992, I would prefer not to enable search.",https://www.youtube.com/,16,hard,Social media
+f158345f8489e0d1d91e28768c39bca1,"Estimate the total cost (with basic support) of using 5 million input tokens and 5 million output tokens each for GPT-4o and GPT-4o Mini, both deployed in the US/EU Data Zones under Standard (On-Demand) in the East US region.",https://azure.microsoft.com/,13,hard,Digital
+1ab384fb3a791edfb410213cc6b82151,Show me the result of a proton emission decay for a Beryllium nucleus with 6 protons and 4 neutrons in the simulation.,https://phet.colorado.edu/,13,hard,Education
+1223b07536a87e0170ff87cbbebd1d3c,"Complete a multiplication quiz on https://www.coolmath4kids.com/, covering multiplication facts for 11-12. The quiz should consist of 10 questions, with unlimited time allowed for each. The goal is to achieve a perfect score of 10 out of 10.",https://www.coolmath4kids.com/,24,hard,Education
