@@ -496,9 +496,15 @@ class BrowserbaseEnv(BrowserEnv):
     def close(self):
         if self.bb and self.bb_session:
             try:
-                self.bb.sessions.update(self.bb_session.id, status="REQUEST_RELEASE")
-            except Exception:
-                pass
+                self.bb.sessions.update(
+                    self.bb_session.id,
+                    project_id=self.project_id,
+                    status="REQUEST_RELEASE",
+                )
+            except Exception as e:
+                logger.warning(
+                    f"Failed to release BB session {self.bb_session.id}: {e}"
+                )
         super().close()
         self.bb = None
         self.bb_session = None
