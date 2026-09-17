@@ -1,0 +1,88 @@
+/* Full-height layout: main content fills space below header */
+html {
+    height: 100dvh;
+    overflow: hidden;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: auto;
+}
+
+body {
+    height: 100dvh;
+    overflow: hidden;
+    overscroll-behavior: none;
+    position: fixed;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body > div {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Next/ThemeProvider add a wrapper; keep flex chain so our layout div gets height */
+body > div > div {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main.main-fill-height {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+/* Page content (e.g. Stack) fills main so height: 100% resolves */
+main.main-fill-height > *:first-child {
+    flex: 1;
+    min-height: 0;
+}
+
+/* AI2 Playground color scheme overrides */
+
+/* Header - use cream background with subtle border */
+header {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #e8e4de !important;
+    box-shadow: none !important;
+}
+
+/* MUI Toolbar default min-height is 64px */
+header .MuiToolbar-root {
+    min-height: 0 !important;
+}
+
+/* Kill all excessive padding, line-height, and min-height inside the header */
+header .MuiToolbar-root * {
+    min-height: 0 !important;
+    line-height: normal !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+}
+
+/* AI2 top bar - dark teal like AI2 Playground */
+[class*="TopBar"] {
+    background-color: #1a3a3a !important;
+}
+
+/* Footer - match the cream background */
+footer {
+    background-color: #faf7f2 !important;
+    border-top: 1px solid #e8e4de !important;
+}
+
+/* Footer links - use the magenta color */
+footer a {
+    color: #d6559c !important;
+}
+
+footer a:hover {
+    color: #b5447f !important;
+}

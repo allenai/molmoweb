@@ -1,0 +1,12 @@
+# If you would like to obtain the data behind this application, please contact
+# The Allen Institute for AI: http://www.allenai.org
+#
+# Our models can require a significant amount of computation, and crawling the
+# API comes at our expense and can even cause applications to fail.
+# We will block unauthorized crawling of the API.
+#
+# Privacy Policy: https://allenai.org/privacy-policy
+# Terms and Conditions of use: https://allenai.org/terms
+
+User-agent: *
+Disallow: /api

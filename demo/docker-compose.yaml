@@ -1,0 +1,69 @@
+# Local stack: Next.js (ui), FastAPI + Socket.IO (api), Postgres, nginx (proxy).
+# Run from this directory: docker compose up --build
+# App: http://localhost:8080
+#
+# Omits the original repo's `sonar` service (Skiff uptime probe only).
+
+services:
+  api:
+    build: ./api
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./api:/api
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=DEBUG
+      - POSTGRES_URL=postgresql://foo:bar@db:5432/web-olmo-demo
+      - BROWSERBASE_API_KEY=${BROWSERBASE_API_KEY:-}
+      - BROWSERBASE_PROJECT_ID=${BROWSERBASE_PROJECT_ID:-}
+      - CORS_ORIGINS=["http://localhost:3000","http://localhost:8080"]
+  ui:
+    build:
+      context: ./ui
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./ui/src:/ui/src
+      - ./ui/public:/ui/public
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_API_URL=
+      - NEXT_PUBLIC_SOCKET_URL=
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "localhost:3000"]
+      interval: 3s
+      timeout: 5s
+      retries: 10
+  db:
+    image: postgres:15.2
+    restart: always
+    # Host port 5433 avoids clashing with a local Postgres on 5432
+    ports: ["5433:5432"]
+    environment:
+      POSTGRES_USER: foo
+      POSTGRES_PASSWORD: bar
+      POSTGRES_DB: web-olmo-demo
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U foo -d web-olmo-demo"]
+      interval: 2s
+      timeout: 5s
+      retries: 15
+      start_period: 5s
+  proxy:
+    build: ./proxy
+    ports:
+      - "8080:8080"
+    depends_on:
+      ui:
+        condition: service_healthy
+      api:
+        condition: service_started
+volumes:
+  pgdata:
