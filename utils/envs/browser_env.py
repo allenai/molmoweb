@@ -623,10 +623,20 @@ class SimpleEnv(BrowserEnv):
         extract_axtree: bool = False,
         headless: bool = True,
         channel: str | None = None,
+        locale: str | None = None,
+        timezone_id: str | None = None,
+        geolocation: dict[str, float] | None = None,
+        extra_http_headers: dict[str, str] | None = None,
+        proxy: dict[str, str] | None = None,
     ):
         super().__init__(start_url, goal, viewport_width, viewport_height, extract_axtree)
         self.headless = headless
         self.channel = channel
+        self.locale = locale
+        self.timezone_id = timezone_id
+        self.geolocation = geolocation
+        self.extra_http_headers = extra_http_headers
+        self.proxy = proxy
 
     def _launch(self):
         self.playwright = _start_playwright()
@@ -636,11 +646,36 @@ class SimpleEnv(BrowserEnv):
         }
         if self.channel:
             launch_opts["channel"] = self.channel
+        if self.proxy:
+            launch_opts["proxy"] = self.proxy
         self.browser = self.playwright.chromium.launch(**launch_opts)
-        self.context = self.browser.new_context(
-            viewport={"width": self.viewport_width, "height": self.viewport_height}
-        )
+
+        context_opts: dict = {
+            "viewport": {"width": self.viewport_width, "height": self.viewport_height}
+        }
+        if self.locale is not None:
+            context_opts["locale"] = self.locale
+        if self.timezone_id is not None:
+            context_opts["timezone_id"] = self.timezone_id
+        if self.geolocation is not None:
+            context_opts["geolocation"] = self.geolocation
+            context_opts["permissions"] = ["geolocation"]
+        if self.extra_http_headers is not None:
+            context_opts["extra_http_headers"] = self.extra_http_headers
+        if self.proxy is not None:
+            context_opts["proxy"] = self.proxy
+
+        self.context = self.browser.new_context(**context_opts)
         self.page = self.context.new_page()
 
     def _get_info(self) -> dict[str, Any]:
-        return {}
+        info: dict[str, Any] = {}
+        if self.locale:
+            info["locale"] = self.locale
+        if self.timezone_id:
+            info["timezone_id"] = self.timezone_id
+        if self.geolocation:
+            info["geolocation"] = self.geolocation
+        if self.proxy:
+            info["proxy"] = self.proxy.get("server", "configured")
+        return info
